@@ -1,4 +1,4 @@
-# El-Reto_de_lasletras_Heroicas
+# Mrs.Stikman_Tan_tan
 Proyecto final de programación de computadores.
  ### Integrantes del grupo ###
  - Maria Paula Machuca Hortua
