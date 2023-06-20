@@ -7,7 +7,7 @@ Proyecto final de programación de computadores.
  ### Nombre del grupo Pythonbrokers. ###
  [![logo.jpg](https://i.postimg.cc/HL4kxVwv/logo.jpg)](https://postimg.cc/4Kyg24Fp)
 # El codigo del proyecto estaria dividido en diferentes secciones 
-## Situación problema##
+## Situación problema
 La situación problema consiste en la necesidad de construir una aplicación en Python que emule el juego del ahorcado. El objetivo es desarrollar un programa interactivo que permita a los usuarios jugar el clásico juego del ahorcado en la consola.
 
 La aplicación debe cumplir con las siguientes condiciones:
