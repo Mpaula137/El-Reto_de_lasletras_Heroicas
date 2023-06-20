@@ -23,7 +23,7 @@ La aplicación debe cumplir con las siguientes condiciones:
 - Soporte para otros idiomas: La aplicación debe ser capaz de ofrecer el juego del ahorcado en diferentes idiomas, como inglés, francés y alemán. Esto implica la necesidad de traducir las palabras utilizadas en el juego y proporcionar las interacciones con el usuario en el idioma seleccionado.
 - Manejo de jugadores: La aplicación debe permitir a los jugadores jugar simultáneamente, incluso en diferentes partidas. Esto implica la gestión de múltiples instancias del juego, cada una con su propio estado y progreso.
 
-## Solución ##
+## Solución 
 En respuesta al problema planteado, hemos abordado la solución a través de un enfoque basado en la investigación y el aprendizaje mediante la revisión de varios videos relevantes. Los videos que hemos consultado y utilizado como recursos para resolver el problema son los siguientes:
 
 - Video 1: "https://youtu.be/ipyIYYhS_7w"
