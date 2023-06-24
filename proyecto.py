@@ -340,7 +340,7 @@ if a == 1:
                         print("¡Ganaste! Has adivinado la palabra:", palabra)
                         break
                     
-                    if tiempo_restante <= 0:
+                    if tiempo_restante <= 0 or intentos_restantes== 0:
                      print("¡Perdiste! La palabra era:", palabra)
                      break
 
@@ -495,7 +495,7 @@ if a == 1:
                         print("¡Ganaste! Has adivinado la palabra:", palabra)
                         break
                     
-                    if tiempo_restante <= 0:
+                    if tiempo_restante <= 0 or intentos_restantes== 0:
                      print("¡Perdiste! La palabra era:", palabra)
                      break
 
@@ -821,7 +821,7 @@ if a == 1:
                             print("¡Ganaste! Has adivinado la palabra:", palabra)
                             break
                     
-                        if tiempo_restante <= 0:
+                        if tiempo_restante <= 0 or intentos_restantes== 0:
                             print("¡Perdiste! La palabra era:", palabra)
                             break
 
@@ -968,7 +968,7 @@ if a == 1:
                             print("¡Ganaste! Has adivinado la palabra:", palabra)
                             break
                     
-                        if tiempo_restante <= 0:
+                        if tiempo_restante <= 0 or intentos_restantes== 0:
                             print("¡Perdiste! La palabra era:", palabra)
                             break
 
@@ -989,20 +989,63 @@ elif a == 2:
 
 
             def Palabra_Aleatoria(lista_palabras):
-                palabra_aleatoria = random.choice(lista_palabras)
-                return palabra_aleatoria
+                    """
+                    Función para escoger una palabra aleatoriamente
+
+                    Argumentos:
+                    parametro1: lista de palabras.
+         
+                    Returns:
+                    palabra aleatoria pertenciente a la lista
+                    """    
+                    palabra_aleatoria = random.choice(lista_palabras)
+                    return palabra_aleatoria
 
             def ocultar_palabra(palabra):
+                """
+                Función para ocultar la palabra elegida
+
+                Argumentos:
+                parametro1: operación para ocultar cada caracter de la palabra
+     
+                Returns:
+                palabra aleatoria pertenciente a la lista oculta
+                """ 
                 oculta = "_" * len(palabra)
                 return oculta
 
             def mostrar_palabra(palabra_oculta):
-                print("The word:", " ".join(palabra_oculta))
+                """
+                Función que mostrara la palabra oculta
+
+                Argumentos:
+                parametro1: palabra oculta
+         
+                Returns:
+                Muestra la palabra que estaba oculta
+                """
+                print("Word:", " ".join(palabra_oculta))
 
             def adivinar_letra():
-                return input("Guess a letter: ")
+                """
+                Función para adivinar la palabra
+
+                Argumentos:
+                parametro1: La letra ingresada por el usuario
+                """ 
+                return input("guess the letter:")
 
             def Stickman(intentos):
+                """
+                Función que forma al muñeco segun los intentos
+
+                Argumentos:
+                parametro1: Intentos
+        
+                Returns:
+                Stikman 
+        
+                """
                 if intentos == range(1, 1000):
                     print("")
                     print("")
@@ -1013,40 +1056,50 @@ elif a == 2:
                     print("=====")
 
             def jugar_ahorcado():
-                palabra = Palabra_Aleatoria(lista)
-                palabra_oculta = ocultar_palabra(palabra)
-                intentos_totales = 1000
-                intentos_restantes = intentos_totales
+                palabra = Palabra_Aleatoria(lista)# En palabra se almacenara la palara aleatoria
+                palabra_oculta = ocultar_palabra(palabra) # En palabra_oculta se almacenara la palabra aleatoria pero oculta
+                intentos_totales = 1000 # Definimos la cantidad de intentos en este modo de juego
+                intentos_restantes = intentos_totales # En intentos_restantes se almacena los intentos_totales del nivel
+                tiempo_inicial = time.time()# Tiempo inicial, se utilizará para el temporizador
 
+ 
+                while intentos_restantes > 0: #bucle que permite seguir el programa mientras hallan intentos 
+                    mostrar_palabra(palabra_oculta) # Llamamos la función mostra_palabra con el argumento de palabra_oculta
+                    Stickman(intentos_restantes) # Llamamos la función del stikman con el argumento de los intentos
+                    letra = adivinar_letra() # La variable letra almacena la función adivinar_letra
+                    acierto = False # verifica el acierto del usuario
+                    nueva_palabra_oculta = "" # Actualiza la palabra
 
-                while intentos_restantes > 0:
-                    mostrar_palabra(palabra_oculta)
-                    Stickman(intentos_restantes)
-                    letra = adivinar_letra()
-                    acierto = False
-                    nueva_palabra_oculta = ""
-
-                    for i in range(len(palabra)):
+                    for i in range(len(palabra)): # Ciclo para comprobar que la letra ingresada sea de la palabra
                         if palabra[i].lower() == letra.lower():
-                            nueva_palabra_oculta += letra
-                            acierto = True
+                           nueva_palabra_oculta += letra
+                           acierto = True
                         else:
-                            nueva_palabra_oculta += palabra_oculta[i]
+                           nueva_palabra_oculta += palabra_oculta[i]
 
-                    if acierto:
-                        palabra_oculta = nueva_palabra_oculta
-                        print("¡Correct!")
+                        if acierto:
+                            palabra_oculta = nueva_palabra_oculta
+                            tiempo_total = 120 # Establecer aquí el tiempo total en segundos
+                            tiempo_transcurrido = time.time() - tiempo_inicial
+                            tiempo_restante = tiempo_total - tiempo_transcurrido
+                        print("¡¡Correct!! I'll keep you", int(tiempo_restante), "seconds.")   
 
                     else:
                         intentos_restantes -= 1
-                        print("Incorrect. you have left ", intentos_restantes, "Attempts.")
+                        tiempo_total = 120  # Establecer aquí el tiempo total en segundos
+                        tiempo_transcurrido = time.time() - tiempo_inicial
+                        tiempo_restante = tiempo_total - tiempo_transcurrido
+                    
+                        print("Incorrect. you have left ", intentos_restantes, "Attempts", int(tiempo_restante), "seconds")  
+                
 
                     if palabra_oculta.lower() == palabra.lower():
                         print("Won! You have guessed the word:", palabra)
                         break
 
-                if intentos_restantes == 0:
-                        print("You lost! The word was:", palabra)
+                    if tiempo_restante <= 0 or intentos_restantes== 0:
+                        print("¡You lost! The word was:", palabra)
+                        break
 
 
             print("Player 1:")
@@ -1060,20 +1113,63 @@ elif a == 2:
             lista = ['Companionship', 'Biscuit', 'Hug', 'Loyalty', 'Enriching', 'Autumn', 'Ambition', 'Bright', 'Stillness', 'Science', 'Red', 'Pencil', 'Cinnamon ', 'Air', 'Love', 'Highway', 'Patience', 'Loneliness', 'Strategy', 'Breakthrough', 'Fashion', 'Growth', 'Tenacity', 'Excited', 'Literature', 'Party', 'Hope', 'Inspiring', 'Innovation', 'Creativity', 'Electrifying', 'Amazement', 'Meat', 'Clock', 'Silence', 'Heading', 'Snow', 'Bow ', 'Ability', 'Sleep', 'Orange', 'Wonder', 'Friendliness', 'Change', 'Computer', 'Music', 'Grape', 'Epiphany', 'Running', 'Thankfulness', 'Leadership', 'Mystery', 'Glasses', 'Communication', 'Revelation', 'Acclaimed', 'Tears', 'Groundbreaker', 'Whisper', 'Snow', 'Horizon', 'Scoreboard', 'Discovery' , 'Style', 'Enchanting', 'Sport', 'Literature', 'Heal', 'Serenity', 'Dog', 'Refreshing', 'Wonder', 'Office', 'Relaxation', 'Style', 'Vitality', 'Conservation', 'Dignity', 'Redemption', 'Swimming', 'Rest', 'Exciting', 'Career', 'Oatmeal', 'Achievement', 'Applauded', 'Time', 'Yogurt' , 'Ocean', 'Cinema', 'Village', 'Satisfaction', 'Coffee', 'Guitar', 'Water', 'Chalk', 'Responsibility', 'Prestige', 'Pleasure', 'Crying', 'Optimism', 'Team', 'Equality', 'Vanilla', 'Dance', 'Bus', 'Hobby', 'Imagination', 'Irresistible', 'Glow', 'Adaptability', 'Appreciation', 'Pen ', 'Volunteering', 'Hope', 'Intriguing', 'Enlightening', 'Uplifting', 'Impressionism', 'Tuesday', 'Architecture', 'Progress', 'Stars', 'Community', 'Momentous', 'Splendid', 'Hill', 'Environment', 'Refreshment', 'Dusk', 'Innocence', 'Corn', 'Courage', 'Surprised', 'Exercise', 'Wait', 'Photograph', ' Reality', 'Nice', 'Enchantment', 'Dusk', 'Desert', 'Impressed', 'Sad', 'Oil', 'Euphoria', 'Painting', 'Wellness', 'Village', 'Glow' , 'Reflection', 'Dance', 'Feather', 'Dedication', 'Delight', 'Laughter', 'Fall in love', 'Cake', 'Sport', 'Reinvention', 'Cocoa', 'Gastronomy', ' Symmetry', 'Brotherhood', 'Engineer', 'Fulfilling', 'Cocoa', 'Aspiration', 'Authenticity', 'Humility', 'Intrigue', 'Pleasure', 'Consciousness', 'Exhilarating', 'Lawyer' , 'Money', 'Yogurt', 'Drive', 'Computer', 'Juice', 'Fire', 'Backwind', 'Fascination', 'Planet', 'Happiness', 'Cat', 'Greatness', ' Elephant', 'Sweet', 'Rabbit', 'Plain', 'Bitter', 'Water', 'Book', 'Winter', 'Work', 'Attractive', 'Optimism', 'Sculpture', 'Gastronomy' , 'Beautiful', 'Glasses', 'Football', 'Prodigy', 'Experience', 'Get Inspired', 'Sea', 'Mystic', 'Nature', 'Write', 'Fantasy', 'Walking', ' Joy', 'Universe', 'Te', 'Expression', 'Laughter', 'Spirituality', 'Rejuvenation', 'River', 'Happiness', 'Banana', 'Yoga', 'Emotional', 'Opportunity' , 'Home', 'Pen', 'Patience', 'Road', 'Joy', 'Trust', 'Attraction', 'Dreaming', 'Awesome', 'Birthday', 'Nightmare', 'Amazement', ' Clouds', 'Gorgeous', 'Balance', 'Collaboration', 'Space', 'Empowerment', 'Design', 'Study', 'Emotionally', 'Resilience', 'Basketball', 'Glowing', 'Empathy' , 'Interiors', 'Stunning', 'Unforgettable', 'Admiration', 'Beautiful', 'Mountain', 'Realization', 'Acid', 'Write', 'Hug', 'Ceramic', 'Jump', ' Action', 'Sigh', 'Angry', 'Table', 'Hat', 'Motorcycle', 'Beer', 'Shoes', 'Truth', 'Excitingly', 'Star', 'Holiday', 'Rhythm' , 'Sky', 'Pastime', 'Colorful', 'Travel', 'Dew', 'Wonderful', 'Psychology', 'Sunrise', 'Gratitude', 'Challenge', 'Swimming', 'Analysis', ' Exquisite', 'Heritage', 'Television', 'Pants', 'Gift', 'Reward', 'Desert', 'Nobility', 'Connection', 'Story', 'School', 'Maturity', 'Rain' , 'Lamp', 'Spontaneity', 'Claro', 'Constellation', 'Mouse', 'Culture', 'Fresh', 'Inspiration', 'Sun Guitar', 'Book', 'Diversity', 'Risk', 'orange', 'University', 'Determination', 'Festival', 'Kindness', 'Breeze', 'Hamster', 'Highway', 'Wonder', 'Bee', 'Hope', 'Knowledge', 'Hill ', 'Hamster', 'Gentle', 'Energy', 'Radiant', 'Medicine', 'Swimming', 'Waterfall', 'Affectionate', 'Warm', 'Friendship', 'Telephone', 'Rabbit', 'Monday', 'Outdoors', 'Road', 'Shining', 'Saxophone', 'Ethics', 'Tennis', 'Truck', 'Learning', 'Sincerity', 'Sustainability', 'Kindness', 'Jungle', 'Shine', 'Focus ', 'Dog', 'University', 'Nurture', 'Discovery', 'Garden', 'Skill', 'Train', 'Lighting', 'Planning', 'Arena', 'Tennis', 'Lush', 'Overcoming', 'Summer', 'Engineer', 'Forest', 'Storm', 'Transcendence', 'Divorced', 'Harmony', 'Empathy', 'Respect', 'Clock', 'Friend', 'Thread ', 'Yogurt', 'School', 'Serendipity', 'Airplane', 'Game', 'Laughter', 'Plenitude', 'Sculpture', 'Hospital', 'Smile', 'Captivating', 'Intuition', 'Experience', 'Splendor', 'Ocean', 'Prosperity', 'Consciousness', 'Tequila', 'Anniversary', 'Seduction', 'Leadership', 'Outstanding', 'Courteous', 'Renewal', 'Valley ', 'Morning', 'Night', 'Winter', 'Charisma', 'Evolution', 'Flexibility', 'Energetic', 'Change', 'Basketball', 'Professionalism', 'Inspiration', 'Exciting', 'Wonderful', 'Success', 'Solidarity', 'Renaissance', 'Vegetable', 'Dress', 'Shells', 'Sea', 'Medical', 'Faith', 'T-shirt', 'Creativity', 'Bitter ', 'Celebration', 'Vitality', 'Flowers', 'Night', 'Giggle', 'Reward', 'Adventure', 'Pepper', 'Spring', 'Exhilarating', 'Ceiling', 'Sugar', 'Dress', 'Calm', 'Freedom', 'Tranquility', 'Consciousness', 'Anniversary', 'Moments', 'Happy', 'Galaxy', 'Authenticity', 'Meditation', 'Competence', 'Tree ', 'Nutrition', 'Glorious', 'Science', 'Elevation', 'Air', 'Justice', 'Efficiency', 'Charm', 'Fire', 'Tradition', 'Oasis', 'Surprise', 'Teaching', 'Joy', 'Dreaming', 'Overflowing', 'Adventure', 'Television', 'Shoes', 'Chocolate', 'Dog', 'Inspiration', 'Wedding', 'Anger', 'Passionate' , 'Medicine', 'Brush', 'Clarity', 'Surround', 'Pizza', 'Moon', 'Justice', 'Empowerment', 'Chair', 'Overflow', 'Wind', 'Wealth', 'Memories', 'Enthusiasm', 'Technology', 'Shop', 'Galaxy', 'Magic', 'Enchanting', 'Pasta', 'Exuberance', 'Equity', 'Cinema', 'Perseverance', 'Organization ', 'Perseverance', 'Career', 'Dazed', 'Dreams', 'Originality', 'Extraordinary', 'Momentous', 'Office', 'Plain', 'Milk', 'Skateboard', 'Cellphone', 'Intelligence', 'Relaxing', 'Sound', 'Outburst', 'Sunset', 'Inspirational', 'Walking', 'Serenity', 'Fantasy', 'Emancipating', 'Mindful', 'Icy', 'Evening ', 'Pencil', 'Belonging', 'Entrepreneurship', 'Integrity', 'Innocence', 'Harmony', 'Self-esteem', 'Joy', 'Tea', 'Notebook', 'Painting', 'Rice', 'Enrichment', 'Motivator', 'Inclusion', 'apple', 'Mindfulness', 'Respect', 'Exploration', 'Neighbor', 'Wealth', 'Transformation', 'Painting', 'Joy', 'Chaos ', 'Earth', 'Butterfly', 'Amazement', 'Exotic', 'Sustainability', 'Passionate', 'Vanilla', 'Fascinating', 'Acid', 'Tiger', 'Sadness', 'Vision', 'Lightning', 'Satellite', 'Candid', 'Cellular', 'Vegetable', 'Invigorating', 'Whisky', 'Theatre', 'Landscape', 'Feeling', 'Fortress', 'Street', 'Door ', 'Meat', 'Mystery', 'Theater', 'Pasta', 'Saturday', 'Commitment', 'Triumph', 'Fascinating', 'Courage', 'Wheat', 'Kindness', 'Peace', 'Sustainability', 'Persistence', 'City', 'Architecture', 'Party', 'Dreamer', 'Nursing', 'Fortitude', 'Sigh', 'Tender', 'Humility', 'Climb', 'Apple ', 'Car', 'Shining', 'Single', 'Relationships', 'Cheerful', 'Revitalizing', 'Friendly', 'Excitedly', 'Avenue', 'Beauty', 'Yellow', 'Defiance', 'Culture', 'Efficiency', 'Drums', 'Majestic', 'Scanner', 'Salt', 'Companion', 'Family', 'Vibrant', 'Environment', 'Learning', 'Lawyer', ' Entertainment', 'Values', 'Shop', 'Acceptance', 'Family', 'Knowledge', 'Strength', 'Spirit', 'Brave', 'Revolution', 'Care', 'Explorer', 'Beach' , 'Sofa', 'Friendship', 'Bus', 'Fish', 'Dance', 'Enchantment', 'Mountain', 'Forest', 'Survival', 'Incomparable', 'Hospital', 'Garden', 'Legend', 'Avenue', 'Sublimation', 'Salad', 'Fate', 'Kind', 'Sweet', 'Eternity', 'Hat', 'Eternal', 'Loving', 'Paint', 'Heart' , 'Constancy', 'Chair', 'Master', 'Automobile', 'Metropolis', 'Vibrant', 'Tea', 'Subdued', 'Brush', 'Harmony', 'Plenitude', 'Addictive', ' Violin', 'Goal', 'Plethoric', 'Thought', 'Lamp', 'Enjoyment', 'Ingenuity', 'Challenges', 'Amazing', 'Work', 'Beach', 'Shelter', 'Morning' , 'Angry', 'Honesty', 'Fantastic', 'Enthralling', 'Surprised', 'Transformation', 'Summer', 'Math', 'Calm', 'Motorbike', 'Lion', 'Comfort', ' Souvenir', 'Company', 'Drop', 'Dream', 'Touching', 'Development', 'Wisdom', 'Married', 'Married', 'Love', 'Fashion', 'Art', 'Heroic' , 'Medical', 'Memory', 'Transcendental', 'Autonomy', 'Roof', 'Philosophy', 'Amazing', 'Sorority', 'Paper', 'Tolerance', 'Wall', 'School', ' Climb', 'Sugar', 'Equality', 'Evening', 'Soda', 'Future', 'Paradise', 'Engineering', 'Sublime', 'Rest', 'Butter', 'Romance', 'Noon', 'Lightning' , 'Generous', 'Motivation', 'Will', 'Widower', 'Engineering', 'Dawn', 'Wall', 'Vividness', 'Outdoors', 'Independence', 'Elephant', 'Widower', 'Noon', 'Happy', 'Amazing', 'Heady', 'Promising', 'Education', 'Sushi', 'Patient', 'Innovation', 'Agriculture', 'Determination', 'Thunder', 'Energy' , 'Dragonfly', 'Incredible', 'Solution', 'Lightning', 'Tiger', 'Cat', 'Dedication', 'Boat', 'Exaltation', 'Rinsing', 'Passion', 'Ecology', 'Honesty', 'Emotion', 'Running', 'Technology', 'Revealing', 'Explore', 'Dazzle', 'Awakening', 'Wine', 'Sadness', 'History', 'Moon', 'Study' , 'Health', 'Wisdom', 'Exorbitant', 'Lovely', 'Milk', 'Goals', 'Scarf', 'Swim', 'Art', 'Valley', 'River', 'Nature', 'Hamburger', 'History', 'Wellness', 'Blessing', 'Fun', 'Exploration', 'Nature', 'Restlessness', 'Melody', 'Philanthropy', 'Scarf', 'Invigorating', 'Sing ', 'Tolerance', 'Drop', 'Glance', 'Discover', 'Salt', 'Fun', 'City', 'Pardon', 'People', 'Serendipity', 'Solidarity', 'Sunday', 'Heritage', 'Football', 'Community', 'Gorgeous', 'Rainbow', 'Encouragement', 'Discipline', 'Nursery', 'Great', 'Longing', 'Dedication', 'Music', 'Profitable' , 'Health', 'Door', 'Business', 'Window', 'Sensitivity', 'Train', 'Stability', 'Giraffe', 'Enigma', 'Courage', 'Juice', 'Magic', 'Word', 'Unique', 'Piano', 'Metropolis', 'Productivity', 'Exhilaration', 'Picturesque', 'Metropolis', 'Renewal', 'Shocking', 'Journey', 'Courage', 'Shocking' , 'Sing', 'Celebration', 'Cooperation', 'Dance', 'Rinse', 'Enchantment', 'Religion', 'Idyllic', 'Generation', 'Transcendent', 'Feather', 'Wheat', 'Satisfaction', 'Business', 'Reptile', 'Fruit', 'Table', 'Organization', 'Stars', 'Printer', 'Goal', 'Motivation', 'Fearlessness', 'Balance', 'Tranquility' , 'Birthday', 'Divorced', 'Shine', 'Collaboration', 'Green', 'Dessert', 'Melancholy', 'Photography', 'Laughter', 'Aroma', 'Fruit', 'Relaxation', 'Dew', 'Vigor', 'Generosity', 'Smile', 'Autumn', 'Impulse', 'Charm', 'Enchanting', 'Salty', 'Lucidity', 'Blue', 'Enthusiasm', 'Beauty ', 'Growth', 'Sugar', 'Oil', 'Rainbow', 'Travel', 'Hamster', 'Surprise', 'Adventurer', 'Coffee', 'Amazing', 'Curiosity', 'Thread', 'Fish', 'Remarkable', 'Understanding', 'Butter', 'Early Morning', 'Student', 'Spring', 'Lake', 'Therapy', 'Skill', 'Grace', 'Unmatched', 'Purpose' , 'Kiss', 'Feline', 'Single', 'Peace', 'Technician', 'Pear', 'Dance', 'Hummingbird', 'Airplane', 'Lake', 'Intoxicating', 'Euphoric', 'Exciting', 'Festivity', 'Sun', 'Pants', 'Jump', 'Boat', 'Ceramic', 'Interdependence', 'Play', 'Eloquence', 'Stimulated', 'Essence', 'Salty' , 'Trust', 'Oats', 'Ethics', 'Initiative', 'Banana', 'Cloud', 'Lush', 'Write', 'Encounter', 'Nutrition', 'Desire', 'Noble', 'Spirituality', 'Cooperation', 'Harmony', 'Pepper', 'Improvement', 'Sublime', 'Dazzling', 'Tradition', 'Flexibility', 'Universe', 'Giraffe', 'Street', 'Diversity' , 'Act', 'Sensitive', 'Technical', 'Compassion', 'Spectacular', 'Rice', 'Bird', 'Notebook', 'Genuine', 'Silence', 'Cheese', 'T-shirt', 'Dawn', 'Abundance', 'Companionship', 'Challenging', 'Stunning', 'Impression', 'Institute', 'Sunset', 'Achievement', 'Tablet', 'Storm', 'Entrepreneurship', 'Thunder ', 'Eccentricity', 'Village', 'Feelings', 'Electrified', 'Fascinating', 'Gratitude', 'Cinnamon', 'Victory', 'Loyalty', 'Bicycle', 'Corn', 'Success', 'Emotion', 'Education', 'Waterfall', 'Freedom', 'Dentistry', 'Integrity', 'Sofa', 'Research', 'Cheese', 'Enlightenment', 'Generosity', 'Passion', 'Earth ', 'Poetry', 'Sacrifice', 'Resilience', 'Wonderfully', 'Energetic', 'Window']
 
             def Palabra_Aleatoria(lista_palabras):
-                palabra_aleatoria = random.choice(lista_palabras)
-                return palabra_aleatoria
+                    """
+                    Función para escoger una palabra aleatoriamente
+
+                    Argumentos:
+                    parametro1: lista de palabras.
+         
+                    Returns:
+                    palabra aleatoria pertenciente a la lista
+                    """    
+                    palabra_aleatoria = random.choice(lista_palabras)
+                    return palabra_aleatoria
 
             def ocultar_palabra(palabra):
+                """
+                Función para ocultar la palabra elegida
+
+                Argumentos:
+                parametro1: operación para ocultar cada caracter de la palabra
+     
+                Returns:
+                palabra aleatoria pertenciente a la lista oculta
+                """ 
                 oculta = "_" * len(palabra)
                 return oculta
 
             def mostrar_palabra(palabra_oculta):
-                print("The word:", " ".join(palabra_oculta))
+                """
+                Función que mostrara la palabra oculta
+
+                Argumentos:
+                parametro1: palabra oculta
+         
+                Returns:
+                Muestra la palabra que estaba oculta
+                """
+                print("word:", " ".join(palabra_oculta))
 
             def adivinar_letra():
-                return input("Guess a letter: ")
+                """
+                Función para adivinar la palabra
+
+                Argumentos:
+                parametro1: La letra ingresada por el usuario
+                """ 
+                return input("guess the letter ")
 
             def Stickman(intentos):
+                """
+                Función que forma al muñeco segun los intentos
+
+                Argumentos:
+                parametro1: Intentos
+        
+                Returns:
+                Stikman 
+        
+                """
                 if intentos == 0:
                     print("  -------")
                     print("  |     |")
@@ -1163,41 +1259,50 @@ elif a == 2:
                     print("=====")
 
             def jugar_ahorcado():
-                palabra = Palabra_Aleatoria(lista)
-                palabra_oculta = ocultar_palabra(palabra)
-                intentos_totales = 10
-                intentos_restantes = intentos_totales
+                palabra = Palabra_Aleatoria(lista)# En palabra se almacenara la palara aleatoria
+                palabra_oculta = ocultar_palabra(palabra) # En palabra_oculta se almacenara la palabra aleatoria pero oculta
+                intentos_totales = 10 # Definimos la cantidad de intentos en este modo de juego
+                intentos_restantes = intentos_totales # En intentos_restantes se almacena los intentos_totales del nivel
+                tiempo_inicial = time.time()# Tiempo inicial, se utilizará para el temporizador
 
+ 
+                while intentos_restantes > 0: #bucle que permite seguir el programa mientras hallan intentos 
+                    mostrar_palabra(palabra_oculta) # Llamamos la función mostra_palabra con el argumento de palabra_oculta
+                    Stickman(intentos_restantes) # Llamamos la función del stikman con el argumento de los intentos
+                    letra = adivinar_letra() # La variable letra almacena la función adivinar_letra
+                    acierto = False # verifica el acierto del usuario
+                    nueva_palabra_oculta = "" # Actualiza la palabra
 
-                while intentos_restantes > 0:
-                    mostrar_palabra(palabra_oculta)
-                    Stickman(intentos_restantes)
-                    letra = adivinar_letra()
-                    acierto = False
-                    nueva_palabra_oculta = ""
-
-                    for i in range(len(palabra)):
+                    for i in range(len(palabra)): # Ciclo para comprobar que la letra ingresada sea de la palabra
                         if palabra[i].lower() == letra.lower():
-                            nueva_palabra_oculta += letra
-                            acierto = True
+                           nueva_palabra_oculta += letra
+                           acierto = True
                         else:
-                            nueva_palabra_oculta += palabra_oculta[i]
+                           nueva_palabra_oculta += palabra_oculta[i]
 
-                    if acierto:
-                        palabra_oculta = nueva_palabra_oculta
-                        print("¡Correct!")
+                        if acierto:
+                            palabra_oculta = nueva_palabra_oculta
+                            tiempo_total = 60 # Establecer aquí el tiempo total en segundos
+                            tiempo_transcurrido = time.time() - tiempo_inicial
+                            tiempo_restante = tiempo_total - tiempo_transcurrido
+                        print("¡¡Correct!! I'll keep you", int(tiempo_restante), "seconds.")   
 
                     else:
                         intentos_restantes -= 1
-                        print("Incorrect. you have left ", intentos_restantes, "Attempts.")
+                        tiempo_total = 60  # Establecer aquí el tiempo total en segundos
+                        tiempo_transcurrido = time.time() - tiempo_inicial
+                        tiempo_restante = tiempo_total - tiempo_transcurrido
+                    
+                        print("Incorrect. you have left ", intentos_restantes, "Attempts", int(tiempo_restante), "seconds")  
+                
 
                     if palabra_oculta.lower() == palabra.lower():
-                        print("Won! You have guessed the word: ", palabra)
+                        print("Won! You have guessed the word:", palabra)
                         break
 
-                    if intentos_restantes == 0:
-                        print("You lost! The word was:", palabra)
-
+                    if tiempo_restante <= 0 or intentos_restantes== 0:
+                        print("¡You lost! The word was:", palabra)
+                        break
 
             print("Player 1:")
             jugar_ahorcado()
@@ -1210,22 +1315,64 @@ elif a == 2:
             lista = ['Companionship', 'Biscuit', 'Hug', 'Loyalty', 'Enriching', 'Autumn', 'Ambition', 'Bright', 'Stillness', 'Science', 'Red', 'Pencil', 'Cinnamon ', 'Air', 'Love', 'Highway', 'Patience', 'Loneliness', 'Strategy', 'Breakthrough', 'Fashion', 'Growth', 'Tenacity', 'Excited', 'Literature', 'Party', 'Hope', 'Inspiring', 'Innovation', 'Creativity', 'Electrifying', 'Amazement', 'Meat', 'Clock', 'Silence', 'Heading', 'Snow', 'Bow ', 'Ability', 'Sleep', 'Orange', 'Wonder', 'Friendliness', 'Change', 'Computer', 'Music', 'Grape', 'Epiphany', 'Running', 'Thankfulness', 'Leadership', 'Mystery', 'Glasses', 'Communication', 'Revelation', 'Acclaimed', 'Tears', 'Groundbreaker', 'Whisper', 'Snow', 'Horizon', 'Scoreboard', 'Discovery' , 'Style', 'Enchanting', 'Sport', 'Literature', 'Heal', 'Serenity', 'Dog', 'Refreshing', 'Wonder', 'Office', 'Relaxation', 'Style', 'Vitality', 'Conservation', 'Dignity', 'Redemption', 'Swimming', 'Rest', 'Exciting', 'Career', 'Oatmeal', 'Achievement', 'Applauded', 'Time', 'Yogurt' , 'Ocean', 'Cinema', 'Village', 'Satisfaction', 'Coffee', 'Guitar', 'Water', 'Chalk', 'Responsibility', 'Prestige', 'Pleasure', 'Crying', 'Optimism', 'Team', 'Equality', 'Vanilla', 'Dance', 'Bus', 'Hobby', 'Imagination', 'Irresistible', 'Glow', 'Adaptability', 'Appreciation', 'Pen ', 'Volunteering', 'Hope', 'Intriguing', 'Enlightening', 'Uplifting', 'Impressionism', 'Tuesday', 'Architecture', 'Progress', 'Stars', 'Community', 'Momentous', 'Splendid', 'Hill', 'Environment', 'Refreshment', 'Dusk', 'Innocence', 'Corn', 'Courage', 'Surprised', 'Exercise', 'Wait', 'Photograph', ' Reality', 'Nice', 'Enchantment', 'Dusk', 'Desert', 'Impressed', 'Sad', 'Oil', 'Euphoria', 'Painting', 'Wellness', 'Village', 'Glow' , 'Reflection', 'Dance', 'Feather', 'Dedication', 'Delight', 'Laughter', 'Fall in love', 'Cake', 'Sport', 'Reinvention', 'Cocoa', 'Gastronomy', ' Symmetry', 'Brotherhood', 'Engineer', 'Fulfilling', 'Cocoa', 'Aspiration', 'Authenticity', 'Humility', 'Intrigue', 'Pleasure', 'Consciousness', 'Exhilarating', 'Lawyer' , 'Money', 'Yogurt', 'Drive', 'Computer', 'Juice', 'Fire', 'Backwind', 'Fascination', 'Planet', 'Happiness', 'Cat', 'Greatness', ' Elephant', 'Sweet', 'Rabbit', 'Plain', 'Bitter', 'Water', 'Book', 'Winter', 'Work', 'Attractive', 'Optimism', 'Sculpture', 'Gastronomy' , 'Beautiful', 'Glasses', 'Football', 'Prodigy', 'Experience', 'Get Inspired', 'Sea', 'Mystic', 'Nature', 'Write', 'Fantasy', 'Walking', ' Joy', 'Universe', 'Te', 'Expression', 'Laughter', 'Spirituality', 'Rejuvenation', 'River', 'Happiness', 'Banana', 'Yoga', 'Emotional', 'Opportunity' , 'Home', 'Pen', 'Patience', 'Road', 'Joy', 'Trust', 'Attraction', 'Dreaming', 'Awesome', 'Birthday', 'Nightmare', 'Amazement', ' Clouds', 'Gorgeous', 'Balance', 'Collaboration', 'Space', 'Empowerment', 'Design', 'Study', 'Emotionally', 'Resilience', 'Basketball', 'Glowing', 'Empathy' , 'Interiors', 'Stunning', 'Unforgettable', 'Admiration', 'Beautiful', 'Mountain', 'Realization', 'Acid', 'Write', 'Hug', 'Ceramic', 'Jump', ' Action', 'Sigh', 'Angry', 'Table', 'Hat', 'Motorcycle', 'Beer', 'Shoes', 'Truth', 'Excitingly', 'Star', 'Holiday', 'Rhythm' , 'Sky', 'Pastime', 'Colorful', 'Travel', 'Dew', 'Wonderful', 'Psychology', 'Sunrise', 'Gratitude', 'Challenge', 'Swimming', 'Analysis', ' Exquisite', 'Heritage', 'Television', 'Pants', 'Gift', 'Reward', 'Desert', 'Nobility', 'Connection', 'Story', 'School', 'Maturity', 'Rain' , 'Lamp', 'Spontaneity', 'Claro', 'Constellation', 'Mouse', 'Culture', 'Fresh', 'Inspiration', 'Sun Guitar', 'Book', 'Diversity', 'Risk', 'orange', 'University', 'Determination', 'Festival', 'Kindness', 'Breeze', 'Hamster', 'Highway', 'Wonder', 'Bee', 'Hope', 'Knowledge', 'Hill ', 'Hamster', 'Gentle', 'Energy', 'Radiant', 'Medicine', 'Swimming', 'Waterfall', 'Affectionate', 'Warm', 'Friendship', 'Telephone', 'Rabbit', 'Monday', 'Outdoors', 'Road', 'Shining', 'Saxophone', 'Ethics', 'Tennis', 'Truck', 'Learning', 'Sincerity', 'Sustainability', 'Kindness', 'Jungle', 'Shine', 'Focus ', 'Dog', 'University', 'Nurture', 'Discovery', 'Garden', 'Skill', 'Train', 'Lighting', 'Planning', 'Arena', 'Tennis', 'Lush', 'Overcoming', 'Summer', 'Engineer', 'Forest', 'Storm', 'Transcendence', 'Divorced', 'Harmony', 'Empathy', 'Respect', 'Clock', 'Friend', 'Thread ', 'Yogurt', 'School', 'Serendipity', 'Airplane', 'Game', 'Laughter', 'Plenitude', 'Sculpture', 'Hospital', 'Smile', 'Captivating', 'Intuition', 'Experience', 'Splendor', 'Ocean', 'Prosperity', 'Consciousness', 'Tequila', 'Anniversary', 'Seduction', 'Leadership', 'Outstanding', 'Courteous', 'Renewal', 'Valley ', 'Morning', 'Night', 'Winter', 'Charisma', 'Evolution', 'Flexibility', 'Energetic', 'Change', 'Basketball', 'Professionalism', 'Inspiration', 'Exciting', 'Wonderful', 'Success', 'Solidarity', 'Renaissance', 'Vegetable', 'Dress', 'Shells', 'Sea', 'Medical', 'Faith', 'T-shirt', 'Creativity', 'Bitter ', 'Celebration', 'Vitality', 'Flowers', 'Night', 'Giggle', 'Reward', 'Adventure', 'Pepper', 'Spring', 'Exhilarating', 'Ceiling', 'Sugar', 'Dress', 'Calm', 'Freedom', 'Tranquility', 'Consciousness', 'Anniversary', 'Moments', 'Happy', 'Galaxy', 'Authenticity', 'Meditation', 'Competence', 'Tree ', 'Nutrition', 'Glorious', 'Science', 'Elevation', 'Air', 'Justice', 'Efficiency', 'Charm', 'Fire', 'Tradition', 'Oasis', 'Surprise', 'Teaching', 'Joy', 'Dreaming', 'Overflowing', 'Adventure', 'Television', 'Shoes', 'Chocolate', 'Dog', 'Inspiration', 'Wedding', 'Anger', 'Passionate' , 'Medicine', 'Brush', 'Clarity', 'Surround', 'Pizza', 'Moon', 'Justice', 'Empowerment', 'Chair', 'Overflow', 'Wind', 'Wealth', 'Memories', 'Enthusiasm', 'Technology', 'Shop', 'Galaxy', 'Magic', 'Enchanting', 'Pasta', 'Exuberance', 'Equity', 'Cinema', 'Perseverance', 'Organization ', 'Perseverance', 'Career', 'Dazed', 'Dreams', 'Originality', 'Extraordinary', 'Momentous', 'Office', 'Plain', 'Milk', 'Skateboard', 'Cellphone', 'Intelligence', 'Relaxing', 'Sound', 'Outburst', 'Sunset', 'Inspirational', 'Walking', 'Serenity', 'Fantasy', 'Emancipating', 'Mindful', 'Icy', 'Evening ', 'Pencil', 'Belonging', 'Entrepreneurship', 'Integrity', 'Innocence', 'Harmony', 'Self-esteem', 'Joy', 'Tea', 'Notebook', 'Painting', 'Rice', 'Enrichment', 'Motivator', 'Inclusion', 'apple', 'Mindfulness', 'Respect', 'Exploration', 'Neighbor', 'Wealth', 'Transformation', 'Painting', 'Joy', 'Chaos ', 'Earth', 'Butterfly', 'Amazement', 'Exotic', 'Sustainability', 'Passionate', 'Vanilla', 'Fascinating', 'Acid', 'Tiger', 'Sadness', 'Vision', 'Lightning', 'Satellite', 'Candid', 'Cellular', 'Vegetable', 'Invigorating', 'Whisky', 'Theatre', 'Landscape', 'Feeling', 'Fortress', 'Street', 'Door ', 'Meat', 'Mystery', 'Theater', 'Pasta', 'Saturday', 'Commitment', 'Triumph', 'Fascinating', 'Courage', 'Wheat', 'Kindness', 'Peace', 'Sustainability', 'Persistence', 'City', 'Architecture', 'Party', 'Dreamer', 'Nursing', 'Fortitude', 'Sigh', 'Tender', 'Humility', 'Climb', 'Apple ', 'Car', 'Shining', 'Single', 'Relationships', 'Cheerful', 'Revitalizing', 'Friendly', 'Excitedly', 'Avenue', 'Beauty', 'Yellow', 'Defiance', 'Culture', 'Efficiency', 'Drums', 'Majestic', 'Scanner', 'Salt', 'Companion', 'Family', 'Vibrant', 'Environment', 'Learning', 'Lawyer', ' Entertainment', 'Values', 'Shop', 'Acceptance', 'Family', 'Knowledge', 'Strength', 'Spirit', 'Brave', 'Revolution', 'Care', 'Explorer', 'Beach' , 'Sofa', 'Friendship', 'Bus', 'Fish', 'Dance', 'Enchantment', 'Mountain', 'Forest', 'Survival', 'Incomparable', 'Hospital', 'Garden', ' Legend', 'Avenue', 'Sublimation', 'Salad', 'Fate', 'Kind', 'Sweet', 'Eternity', 'Hat', 'Eternal', 'Loving', 'Paint', 'Heart' , 'Constancy', 'Chair', 'Master', 'Automobile', 'Metropolis', 'Vibrant', 'Tea', 'Subdued', 'Brush', 'Harmony', 'Plenitude', 'Addictive', ' Violin', 'Goal', 'Plethoric', 'Thought', 'Lamp', 'Enjoyment', 'Ingenuity', 'Challenges', 'Amazing', 'Work', 'Beach', 'Shelter', 'Morning' , 'Angry', 'Honesty', 'Fantastic', 'Enthralling', 'Surprised', 'Transformation', 'Summer', 'Math', 'Calm', 'Motorbike', 'Lion', 'Comfort', ' Souvenir', 'Company', 'Drop', 'Dream', 'Touching', 'Development', 'Wisdom', 'Married', 'Married', 'Love', 'Fashion', 'Art', 'Heroic' , 'Medical', 'Memory', 'Transcendental', 'Autonomy', 'Roof', 'Philosophy', 'Amazing', 'Sorority', 'Paper', 'Tolerance', 'Wall', 'School', ' Climb', 'Sugar', 'Equality', 'Evening', 'Soda', 'Future', 'Paradise', 'Engineering', 'Sublime', 'Rest', 'Butter', 'Romance', 'Noon', 'Lightning' , 'Generous', 'Motivation', 'Will', 'Widower', 'Engineering', 'Dawn', 'Wall', 'Vividness', 'Outdoors', 'Independence', 'Elephant', 'Widower', 'Noon', 'Happy', 'Amazing', 'Heady', 'Promising', 'Education', 'Sushi', 'Patient', 'Innovation', 'Agriculture', 'Determination', 'Thunder', 'Energy' , 'Dragonfly', 'Incredible', 'Solution', 'Lightning', 'Tiger', 'Cat', 'Dedication', 'Boat', 'Exaltation', 'Rinsing', 'Passion', 'Ecology', 'Honesty', 'Emotion', 'Running', 'Technology', 'Revealing', 'Explore', 'Dazzle', 'Awakening', 'Wine', 'Sadness', 'History', 'Moon', 'Study' , 'Health', 'Wisdom', 'Exorbitant', 'Lovely', 'Milk', 'Goals', 'Scarf', 'Swim', 'Art', 'Valley', 'River', 'Nature', 'Hamburger', 'History', 'Wellness', 'Blessing', 'Fun', 'Exploration', 'Nature', 'Restlessness', 'Melody', 'Philanthropy', 'Scarf', 'Invigorating', 'Sing ', 'Tolerance', 'Drop', 'Glance', 'Discover', 'Salt', 'Fun', 'City', 'Pardon', 'People', 'Serendipity', 'Solidarity', 'Sunday', 'Heritage', 'Football', 'Community', 'Gorgeous', 'Rainbow', 'Encouragement', 'Discipline', 'Nursery', 'Great', 'Longing', 'Dedication', 'Music', 'Profitable' , 'Health', 'Door', 'Business', 'Window', 'Sensitivity', 'Train', 'Stability', 'Giraffe', 'Enigma', 'Courage', 'Juice', 'Magic', 'Word', 'Unique', 'Piano', 'Metropolis', 'Productivity', 'Exhilaration', 'Picturesque', 'Metropolis', 'Renewal', 'Shocking', 'Journey', 'Courage', 'Shocking' , 'Sing', 'Celebration', 'Cooperation', 'Dance', 'Rinse', 'Enchantment', 'Religion', 'Idyllic', 'Generation', 'Transcendent', 'Feather', 'Wheat', 'Satisfaction', 'Business', 'Reptile', 'Fruit', 'Table', 'Organization', 'Stars', 'Printer', 'Goal', 'Motivation', 'Fearlessness', 'Balance', 'Tranquility' , 'Birthday', 'Divorced', 'Shine', 'Collaboration', 'Green', 'Dessert', 'Melancholy', 'Photography', 'Laughter', 'Aroma', 'Fruit', 'Relaxation', 'Dew', 'Vigor', 'Generosity', 'Smile', 'Autumn', 'Impulse', 'Charm', 'Enchanting', 'Salty', 'Lucidity', 'Blue', 'Enthusiasm', 'Beauty ', 'Growth', 'Sugar', 'Oil', 'Rainbow', 'Travel', 'Hamster', 'Surprise', 'Adventurer', 'Coffee', 'Amazing', 'Curiosity', 'Thread', 'Fish', 'Remarkable', 'Understanding', 'Butter', 'Early Morning', 'Student', 'Spring', 'Lake', 'Therapy', 'Skill', 'Grace', 'Unmatched', 'Purpose' , 'Kiss', 'Feline', 'Single', 'Peace', 'Technician', 'Pear', 'Dance', 'Hummingbird', 'Airplane', 'Lake', 'Intoxicating', 'Euphoric', 'Exciting', 'Festivity', 'Sun', 'Pants', 'Jump', 'Boat', 'Ceramic', 'Interdependence', 'Play', 'Eloquence', 'Stimulated', 'Essence', 'Salty' , 'Trust', 'Oats', 'Ethics', 'Initiative', 'Banana', 'Cloud', 'Lush', 'Write', 'Encounter', 'Nutrition', 'Desire', 'Noble', 'Spirituality', 'Cooperation', 'Harmony', 'Pepper', 'Improvement', 'Sublime', 'Dazzling', 'Tradition', 'Flexibility', 'Universe', 'Giraffe', 'Street', 'Diversity' , 'Act', 'Sensitive', 'Technical', 'Compassion', 'Spectacular', 'Rice', 'Bird', 'Notebook', 'Genuine', 'Silence', 'Cheese', 'T-shirt', 'Dawn', 'Abundance', 'Companionship', 'Challenging', 'Stunning', 'Impression', 'Institute', 'Sunset', 'Achievement', 'Tablet', 'Storm', 'Entrepreneurship', 'Thunder ', 'Eccentricity', 'Village', 'Feelings', 'Electrified', 'Fascinating', 'Gratitude', 'Cinnamon', 'Victory', 'Loyalty', 'Bicycle', 'Corn', 'Success', 'Emotion', 'Education', 'Waterfall', 'Freedom', 'Dentistry', 'Integrity', 'Sofa', 'Research', 'Cheese', 'Enlightenment', 'Generosity', 'Passion', 'Earth ', 'Poetry', 'Sacrifice', 'Resilience', 'Wonderfully', 'Energetic', 'Window']
 
 
-
             def Palabra_Aleatoria(lista_palabras):
+                """
+                Función para escoger una palabra aleatoriamente
+
+                Argumentos:
+                parametro1: lista de palabras.
+         
+                Returns:
+                palabra aleatoria pertenciente a la lista
+                """    
                 palabra_aleatoria = random.choice(lista_palabras)
                 return palabra_aleatoria
 
             def ocultar_palabra(palabra):
+                """
+                Función para ocultar la palabra elegida
+
+                Argumentos:
+                parametro1: operación para ocultar cada caracter de la palabra
+     
+                Returns:
+                palabra aleatoria pertenciente a la lista oculta
+                """ 
                 oculta = "_" * len(palabra)
                 return oculta
 
             def mostrar_palabra(palabra_oculta):
-                print("The word:", " ".join(palabra_oculta))
+                """
+                Función que mostrara la palabra oculta
+
+                Argumentos:
+                parametro1: palabra oculta
+         
+                Returns:
+                Muestra la palabra que estaba oculta
+                """
+                print("Word:", " ".join(palabra_oculta))
 
             def adivinar_letra():
-                return input("Guess a letter: ")
+                """
+                Función para adivinar la palabra
+
+                Argumentos:
+                parametro1: La letra ingresada por el usuario
+                """ 
+                return input("guess the letter:")
 
             def Stickman(intentos):
+                """
+                Función que forma al muñeco segun los intentos
+
+                Argumentos:
+                parametro1: Intentos
+        
+                Returns:
+                Stikman 
+        
+                """
                 if intentos == 1:
                     print("  -------")
                     print("  |     |")
@@ -1259,42 +1406,55 @@ elif a == 2:
                     print("=====")
 
             def jugar_ahorcado():
-                palabra = Palabra_Aleatoria(lista)
-                palabra_oculta = ocultar_palabra(palabra)
-                intentos_totales = 4
-                intentos_restantes = intentos_totales
+                palabra = Palabra_Aleatoria(lista)# En palabra se almacenara la palara aleatoria
+                palabra_oculta = ocultar_palabra(palabra) # En palabra_oculta se almacenara la palabra aleatoria pero oculta
+                intentos_totales = 4 # Definimos la cantidad de intentos en este modo de juego
+                intentos_restantes = intentos_totales # En intentos_restantes se almacena los intentos_totales del nivel
+                tiempo_inicial = time.time()# Tiempo inicial, se utilizará para el temporizador
 
-                while intentos_restantes > 0:
-                    mostrar_palabra(palabra_oculta)
-                    Stickman(intentos_restantes)
-                    letra = adivinar_letra()
-                    acierto = False
-                    nueva_palabra_oculta = ""
+ 
+                while intentos_restantes > 0: #bucle que permite seguir el programa mientras hallan intentos 
+                    mostrar_palabra(palabra_oculta) # Llamamos la función mostra_palabra con el argumento de palabra_oculta
+                    Stickman(intentos_restantes) # Llamamos la función del stikman con el argumento de los intentos
+                    letra = adivinar_letra() # La variable letra almacena la función adivinar_letra
+                    acierto = False # verifica el acierto del usuario
+                    nueva_palabra_oculta = "" # Actualiza la palabra
 
-                    for i in range(len(palabra)):
+                    for i in range(len(palabra)): # Ciclo para comprobar que la letra ingresada sea de la palabra
                         if palabra[i].lower() == letra.lower():
-                            nueva_palabra_oculta += letra
-                            acierto = True
+                           nueva_palabra_oculta += letra
+                           acierto = True
                         else:
-                            nueva_palabra_oculta += palabra_oculta[i]
+                           nueva_palabra_oculta += palabra_oculta[i]
 
-                    if acierto:
-                        palabra_oculta = nueva_palabra_oculta
-                        print("¡Correct!")
+                        if acierto:
+                            palabra_oculta = nueva_palabra_oculta
+                            tiempo_total = 30 # Establecer aquí el tiempo total en segundos
+                            tiempo_transcurrido = time.time() - tiempo_inicial
+                            tiempo_restante = tiempo_total - tiempo_transcurrido
+                        print("¡¡Correct!! I'll keep you", int(tiempo_restante), "seconds.")   
+
                     else:
                         intentos_restantes -= 1
-                        print("Incorrect. you have left ", intentos_restantes, "Attempts.")
+                        tiempo_total = 30  # Establecer aquí el tiempo total en segundos
+                        tiempo_transcurrido = time.time() - tiempo_inicial
+                        tiempo_restante = tiempo_total - tiempo_transcurrido
+                    
+                        print("Incorrect. you have left ", intentos_restantes, "Attempts", int(tiempo_restante), "seconds")  
+                
 
                     if palabra_oculta.lower() == palabra.lower():
                         print("Won! You have guessed the word:", palabra)
                         break
 
-                    if intentos_restantes == 0:
-                        print("You lost! The word was:", palabra)
+                    if tiempo_restante <= 0 or intentos_restantes== 0:
+                        print("¡You lost! The word was:", palabra)
+                        break
+
             print("Player 1:")
             jugar_ahorcado()
             print("Player 2:")
-            jugar_ahorcado()
+            jugar_ahorcado() 
 
 
     if Multiplayer == 1:
@@ -1307,20 +1467,63 @@ elif a == 2:
 
 
             def Palabra_Aleatoria(lista_palabras):
+                """
+                Función para escoger una palabra aleatoriamente
+
+                Argumentos:
+                parametro1: lista de palabras.
+         
+                Returns:
+                palabra aleatoria pertenciente a la lista
+                """    
                 palabra_aleatoria = random.choice(lista_palabras)
                 return palabra_aleatoria
 
             def ocultar_palabra(palabra):
+                """
+                Función para ocultar la palabra elegida
+
+                Argumentos:
+                parametro1: operación para ocultar cada caracter de la palabra
+     
+                Returns:
+                palabra aleatoria pertenciente a la lista oculta
+                """ 
                 oculta = "_" * len(palabra)
                 return oculta
 
             def mostrar_palabra(palabra_oculta):
-                print("The word:", " ".join(palabra_oculta))
+                """
+                Función que mostrara la palabra oculta
+
+                Argumentos:
+                parametro1: palabra oculta
+         
+                Returns:
+                Muestra la palabra que estaba oculta
+                """
+                print("Word:", " ".join(palabra_oculta))
 
             def adivinar_letra():
-                return input("Guess a letter: ")
+                """
+                Función para adivinar la palabra
+
+                Argumentos:
+                parametro1: La letra ingresada por el usuario
+                """ 
+                return input("guess the letter:")
 
             def Stickman(intentos):
+                """
+                Función que forma al muñeco segun los intentos
+
+                Argumentos:
+                parametro1: Intentos
+        
+                Returns:
+                Stikman 
+        
+                """
                 if intentos == range(1, 1000):
                     print("")
                     print("")
@@ -1331,41 +1534,50 @@ elif a == 2:
                     print("=====")
 
             def jugar_ahorcado():
-                palabra = Palabra_Aleatoria(lista)
-                palabra_oculta = ocultar_palabra(palabra)
-                intentos_totales = 1000
-                intentos_restantes = intentos_totales
+                palabra = Palabra_Aleatoria(lista)# En palabra se almacenara la palara aleatoria
+                palabra_oculta = ocultar_palabra(palabra) # En palabra_oculta se almacenara la palabra aleatoria pero oculta
+                intentos_totales = 1000 # Definimos la cantidad de intentos en este modo de juego
+                intentos_restantes = intentos_totales # En intentos_restantes se almacena los intentos_totales del nivel
+                tiempo_inicial = time.time()# Tiempo inicial, se utilizará para el temporizador
 
+ 
+                while intentos_restantes > 0: #bucle que permite seguir el programa mientras hallan intentos 
+                    mostrar_palabra(palabra_oculta) # Llamamos la función mostra_palabra con el argumento de palabra_oculta
+                    Stickman(intentos_restantes) # Llamamos la función del stikman con el argumento de los intentos
+                    letra = adivinar_letra() # La variable letra almacena la función adivinar_letra
+                    acierto = False # verifica el acierto del usuario
+                    nueva_palabra_oculta = "" # Actualiza la palabra
 
-                while intentos_restantes > 0:
-                    mostrar_palabra(palabra_oculta)
-                    Stickman(intentos_restantes)
-                    letra = adivinar_letra()
-                    acierto = False
-                    nueva_palabra_oculta = ""
-
-                    for i in range(len(palabra)):
+                    for i in range(len(palabra)): # Ciclo para comprobar que la letra ingresada sea de la palabra
                         if palabra[i].lower() == letra.lower():
-                            nueva_palabra_oculta += letra
-                            acierto = True
+                           nueva_palabra_oculta += letra
+                           acierto = True
                         else:
-                            nueva_palabra_oculta += palabra_oculta[i]
+                           nueva_palabra_oculta += palabra_oculta[i]
 
-                    if acierto:
-                        palabra_oculta = nueva_palabra_oculta
-                        print("¡Correct!")
+                        if acierto:
+                            palabra_oculta = nueva_palabra_oculta
+                            tiempo_total = 120  # Establecer aquí el tiempo total en segundos
+                            tiempo_transcurrido = time.time() - tiempo_inicial
+                            tiempo_restante = tiempo_total - tiempo_transcurrido
+                        print("¡¡Correct!! I'll keep you", int(tiempo_restante), "seconds.")   
 
                     else:
                         intentos_restantes -= 1
-                        print("Incorrect. you have left ", intentos_restantes, "Attempts.")
+                        tiempo_total = 120 # Establecer aquí el tiempo total en segundos
+                        tiempo_transcurrido = time.time() - tiempo_inicial
+                        tiempo_restante = tiempo_total - tiempo_transcurrido
+                    
+                        print("Incorrect. you have left ", intentos_restantes, "Attempts", int(tiempo_restante), "seconds")  
+                
 
                     if palabra_oculta.lower() == palabra.lower():
                         print("Won! You have guessed the word:", palabra)
                         break
 
-                if intentos_restantes == 0:
-                        print("You lost! The word was:", palabra)
-
+                    if tiempo_restante <= 0 or intentos_restantes== 0:
+                        print("¡You lost! The word was:", palabra)
+                        break
 
             print("Player 1:")
             jugar_ahorcado()
@@ -1377,20 +1589,63 @@ elif a == 2:
             lista = ['Companionship', 'Biscuit', 'Hug', 'Loyalty', 'Enriching', 'Autumn', 'Ambition', 'Bright', 'Stillness', 'Science', 'Red', 'Pencil', 'Cinnamon ', 'Air', 'Love', 'Highway', 'Patience', 'Loneliness', 'Strategy', 'Breakthrough', 'Fashion', 'Growth', 'Tenacity', 'Excited', 'Literature', 'Party', 'Hope', 'Inspiring', 'Innovation', 'Creativity', 'Electrifying', 'Amazement', 'Meat', 'Clock', 'Silence', 'Heading', 'Snow', 'Bow ', 'Ability', 'Sleep', 'Orange', 'Wonder', 'Friendliness', 'Change', 'Computer', 'Music', 'Grape', 'Epiphany', 'Running', 'Thankfulness', 'Leadership', 'Mystery', 'Glasses', 'Communication', 'Revelation', 'Acclaimed', 'Tears', 'Groundbreaker', 'Whisper', 'Snow', 'Horizon', 'Scoreboard', 'Discovery' , 'Style', 'Enchanting', 'Sport', 'Literature', 'Heal', 'Serenity', 'Dog', 'Refreshing', 'Wonder', 'Office', 'Relaxation', 'Style', 'Vitality', 'Conservation', 'Dignity', 'Redemption', 'Swimming', 'Rest', 'Exciting', 'Career', 'Oatmeal', 'Achievement', 'Applauded', 'Time', 'Yogurt' , 'Ocean', 'Cinema', 'Village', 'Satisfaction', 'Coffee', 'Guitar', 'Water', 'Chalk', 'Responsibility', 'Prestige', 'Pleasure', 'Crying', 'Optimism', 'Team', 'Equality', 'Vanilla', 'Dance', 'Bus', 'Hobby', 'Imagination', 'Irresistible', 'Glow', 'Adaptability', 'Appreciation', 'Pen ', 'Volunteering', 'Hope', 'Intriguing', 'Enlightening', 'Uplifting', 'Impressionism', 'Tuesday', 'Architecture', 'Progress', 'Stars', 'Community', 'Momentous', 'Splendid', 'Hill', 'Environment', 'Refreshment', 'Dusk', 'Innocence', 'Corn', 'Courage', 'Surprised', 'Exercise', 'Wait', 'Photograph', ' Reality', 'Nice', 'Enchantment', 'Dusk', 'Desert', 'Impressed', 'Sad', 'Oil', 'Euphoria', 'Painting', 'Wellness', 'Village', 'Glow' , 'Reflection', 'Dance', 'Feather', 'Dedication', 'Delight', 'Laughter', 'Fall in love', 'Cake', 'Sport', 'Reinvention', 'Cocoa', 'Gastronomy', ' Symmetry', 'Brotherhood', 'Engineer', 'Fulfilling', 'Cocoa', 'Aspiration', 'Authenticity', 'Humility', 'Intrigue', 'Pleasure', 'Consciousness', 'Exhilarating', 'Lawyer' , 'Money', 'Yogurt', 'Drive', 'Computer', 'Juice', 'Fire', 'Backwind', 'Fascination', 'Planet', 'Happiness', 'Cat', 'Greatness', ' Elephant', 'Sweet', 'Rabbit', 'Plain', 'Bitter', 'Water', 'Book', 'Winter', 'Work', 'Attractive', 'Optimism', 'Sculpture', 'Gastronomy' , 'Beautiful', 'Glasses', 'Football', 'Prodigy', 'Experience', 'Get Inspired', 'Sea', 'Mystic', 'Nature', 'Write', 'Fantasy', 'Walking', ' Joy', 'Universe', 'Te', 'Expression', 'Laughter', 'Spirituality', 'Rejuvenation', 'River', 'Happiness', 'Banana', 'Yoga', 'Emotional', 'Opportunity' , 'Home', 'Pen', 'Patience', 'Road', 'Joy', 'Trust', 'Attraction', 'Dreaming', 'Awesome', 'Birthday', 'Nightmare', 'Amazement', ' Clouds', 'Gorgeous', 'Balance', 'Collaboration', 'Space', 'Empowerment', 'Design', 'Study', 'Emotionally', 'Resilience', 'Basketball', 'Glowing', 'Empathy' , 'Interiors', 'Stunning', 'Unforgettable', 'Admiration', 'Beautiful', 'Mountain', 'Realization', 'Acid', 'Write', 'Hug', 'Ceramic', 'Jump', ' Action', 'Sigh', 'Angry', 'Table', 'Hat', 'Motorcycle', 'Beer', 'Shoes', 'Truth', 'Excitingly', 'Star', 'Holiday', 'Rhythm' , 'Sky', 'Pastime', 'Colorful', 'Travel', 'Dew', 'Wonderful', 'Psychology', 'Sunrise', 'Gratitude', 'Challenge', 'Swimming', 'Analysis', ' Exquisite', 'Heritage', 'Television', 'Pants', 'Gift', 'Reward', 'Desert', 'Nobility', 'Connection', 'Story', 'School', 'Maturity', 'Rain' , 'Lamp', 'Spontaneity', 'Claro', 'Constellation', 'Mouse', 'Culture', 'Fresh', 'Inspiration', 'Sun Guitar', 'Book', 'Diversity', 'Risk', 'orange', 'University', 'Determination', 'Festival', 'Kindness', 'Breeze', 'Hamster', 'Highway', 'Wonder', 'Bee', 'Hope', 'Knowledge', 'Hill ', 'Hamster', 'Gentle', 'Energy', 'Radiant', 'Medicine', 'Swimming', 'Waterfall', 'Affectionate', 'Warm', 'Friendship', 'Telephone', 'Rabbit', 'Monday', 'Outdoors', 'Road', 'Shining', 'Saxophone', 'Ethics', 'Tennis', 'Truck', 'Learning', 'Sincerity', 'Sustainability', 'Kindness', 'Jungle', 'Shine', 'Focus ', 'Dog', 'University', 'Nurture', 'Discovery', 'Garden', 'Skill', 'Train', 'Lighting', 'Planning', 'Arena', 'Tennis', 'Lush', 'Overcoming', 'Summer', 'Engineer', 'Forest', 'Storm', 'Transcendence', 'Divorced', 'Harmony', 'Empathy', 'Respect', 'Clock', 'Friend', 'Thread ', 'Yogurt', 'School', 'Serendipity', 'Airplane', 'Game', 'Laughter', 'Plenitude', 'Sculpture', 'Hospital', 'Smile', 'Captivating', 'Intuition', 'Experience', 'Splendor', 'Ocean', 'Prosperity', 'Consciousness', 'Tequila', 'Anniversary', 'Seduction', 'Leadership', 'Outstanding', 'Courteous', 'Renewal', 'Valley ', 'Morning', 'Night', 'Winter', 'Charisma', 'Evolution', 'Flexibility', 'Energetic', 'Change', 'Basketball', 'Professionalism', 'Inspiration', 'Exciting', 'Wonderful', 'Success', 'Solidarity', 'Renaissance', 'Vegetable', 'Dress', 'Shells', 'Sea', 'Medical', 'Faith', 'T-shirt', 'Creativity', 'Bitter ', 'Celebration', 'Vitality', 'Flowers', 'Night', 'Giggle', 'Reward', 'Adventure', 'Pepper', 'Spring', 'Exhilarating', 'Ceiling', 'Sugar', 'Dress', 'Calm', 'Freedom', 'Tranquility', 'Consciousness', 'Anniversary', 'Moments', 'Happy', 'Galaxy', 'Authenticity', 'Meditation', 'Competence', 'Tree ', 'Nutrition', 'Glorious', 'Science', 'Elevation', 'Air', 'Justice', 'Efficiency', 'Charm', 'Fire', 'Tradition', 'Oasis', 'Surprise', 'Teaching', 'Joy', 'Dreaming', 'Overflowing', 'Adventure', 'Television', 'Shoes', 'Chocolate', 'Dog', 'Inspiration', 'Wedding', 'Anger', 'Passionate' , 'Medicine', 'Brush', 'Clarity', 'Surround', 'Pizza', 'Moon', 'Justice', 'Empowerment', 'Chair', 'Overflow', 'Wind', 'Wealth', 'Memories', 'Enthusiasm', 'Technology', 'Shop', 'Galaxy', 'Magic', 'Enchanting', 'Pasta', 'Exuberance', 'Equity', 'Cinema', 'Perseverance', 'Organization ', 'Perseverance', 'Career', 'Dazed', 'Dreams', 'Originality', 'Extraordinary', 'Momentous', 'Office', 'Plain', 'Milk', 'Skateboard', 'Cellphone', 'Intelligence', 'Relaxing', 'Sound', 'Outburst', 'Sunset', 'Inspirational', 'Walking', 'Serenity', 'Fantasy', 'Emancipating', 'Mindful', 'Icy', 'Evening ', 'Pencil', 'Belonging', 'Entrepreneurship', 'Integrity', 'Innocence', 'Harmony', 'Self-esteem', 'Joy', 'Tea', 'Notebook', 'Painting', 'Rice', 'Enrichment', 'Motivator', 'Inclusion', 'apple', 'Mindfulness', 'Respect', 'Exploration', 'Neighbor', 'Wealth', 'Transformation', 'Painting', 'Joy', 'Chaos ', 'Earth', 'Butterfly', 'Amazement', 'Exotic', 'Sustainability', 'Passionate', 'Vanilla', 'Fascinating', 'Acid', 'Tiger', 'Sadness', 'Vision', 'Lightning', 'Satellite', 'Candid', 'Cellular', 'Vegetable', 'Invigorating', 'Whisky', 'Theatre', 'Landscape', 'Feeling', 'Fortress', 'Street', 'Door ', 'Meat', 'Mystery', 'Theater', 'Pasta', 'Saturday', 'Commitment', 'Triumph', 'Fascinating', 'Courage', 'Wheat', 'Kindness', 'Peace', 'Sustainability', 'Persistence', 'City', 'Architecture', 'Party', 'Dreamer', 'Nursing', 'Fortitude', 'Sigh', 'Tender', 'Humility', 'Climb', 'Apple ', 'Car', 'Shining', 'Single', 'Relationships', 'Cheerful', 'Revitalizing', 'Friendly', 'Excitedly', 'Avenue', 'Beauty', 'Yellow', 'Defiance', 'Culture', 'Efficiency', 'Drums', 'Majestic', 'Scanner', 'Salt', 'Companion', 'Family', 'Vibrant', 'Environment', 'Learning', 'Lawyer', ' Entertainment', 'Values', 'Shop', 'Acceptance', 'Family', 'Knowledge', 'Strength', 'Spirit', 'Brave', 'Revolution', 'Care', 'Explorer', 'Beach' , 'Sofa', 'Friendship', 'Bus', 'Fish', 'Dance', 'Enchantment', 'Mountain', 'Forest', 'Survival', 'Incomparable', 'Hospital', 'Garden', 'Legend', 'Avenue', 'Sublimation', 'Salad', 'Fate', 'Kind', 'Sweet', 'Eternity', 'Hat', 'Eternal', 'Loving', 'Paint', 'Heart' , 'Constancy', 'Chair', 'Master', 'Automobile', 'Metropolis', 'Vibrant', 'Tea', 'Subdued', 'Brush', 'Harmony', 'Plenitude', 'Addictive', ' Violin', 'Goal', 'Plethoric', 'Thought', 'Lamp', 'Enjoyment', 'Ingenuity', 'Challenges', 'Amazing', 'Work', 'Beach', 'Shelter', 'Morning' , 'Angry', 'Honesty', 'Fantastic', 'Enthralling', 'Surprised', 'Transformation', 'Summer', 'Math', 'Calm', 'Motorbike', 'Lion', 'Comfort', ' Souvenir', 'Company', 'Drop', 'Dream', 'Touching', 'Development', 'Wisdom', 'Married', 'Married', 'Love', 'Fashion', 'Art', 'Heroic' , 'Medical', 'Memory', 'Transcendental', 'Autonomy', 'Roof', 'Philosophy', 'Amazing', 'Sorority', 'Paper', 'Tolerance', 'Wall', 'School', ' Climb', 'Sugar', 'Equality', 'Evening', 'Soda', 'Future', 'Paradise', 'Engineering', 'Sublime', 'Rest', 'Butter', 'Romance', 'Noon', 'Lightning' , 'Generous', 'Motivation', 'Will', 'Widower', 'Engineering', 'Dawn', 'Wall', 'Vividness', 'Outdoors', 'Independence', 'Elephant', 'Widower', 'Noon', 'Happy', 'Amazing', 'Heady', 'Promising', 'Education', 'Sushi', 'Patient', 'Innovation', 'Agriculture', 'Determination', 'Thunder', 'Energy' , 'Dragonfly', 'Incredible', 'Solution', 'Lightning', 'Tiger', 'Cat', 'Dedication', 'Boat', 'Exaltation', 'Rinsing', 'Passion', 'Ecology', 'Honesty', 'Emotion', 'Running', 'Technology', 'Revealing', 'Explore', 'Dazzle', 'Awakening', 'Wine', 'Sadness', 'History', 'Moon', 'Study' , 'Health', 'Wisdom', 'Exorbitant', 'Lovely', 'Milk', 'Goals', 'Scarf', 'Swim', 'Art', 'Valley', 'River', 'Nature', 'Hamburger', 'History', 'Wellness', 'Blessing', 'Fun', 'Exploration', 'Nature', 'Restlessness', 'Melody', 'Philanthropy', 'Scarf', 'Invigorating', 'Sing ', 'Tolerance', 'Drop', 'Glance', 'Discover', 'Salt', 'Fun', 'City', 'Pardon', 'People', 'Serendipity', 'Solidarity', 'Sunday', 'Heritage', 'Football', 'Community', 'Gorgeous', 'Rainbow', 'Encouragement', 'Discipline', 'Nursery', 'Great', 'Longing', 'Dedication', 'Music', 'Profitable' , 'Health', 'Door', 'Business', 'Window', 'Sensitivity', 'Train', 'Stability', 'Giraffe', 'Enigma', 'Courage', 'Juice', 'Magic', 'Word', 'Unique', 'Piano', 'Metropolis', 'Productivity', 'Exhilaration', 'Picturesque', 'Metropolis', 'Renewal', 'Shocking', 'Journey', 'Courage', 'Shocking' , 'Sing', 'Celebration', 'Cooperation', 'Dance', 'Rinse', 'Enchantment', 'Religion', 'Idyllic', 'Generation', 'Transcendent', 'Feather', 'Wheat', 'Satisfaction', 'Business', 'Reptile', 'Fruit', 'Table', 'Organization', 'Stars', 'Printer', 'Goal', 'Motivation', 'Fearlessness', 'Balance', 'Tranquility' , 'Birthday', 'Divorced', 'Shine', 'Collaboration', 'Green', 'Dessert', 'Melancholy', 'Photography', 'Laughter', 'Aroma', 'Fruit', 'Relaxation', 'Dew', 'Vigor', 'Generosity', 'Smile', 'Autumn', 'Impulse', 'Charm', 'Enchanting', 'Salty', 'Lucidity', 'Blue', 'Enthusiasm', 'Beauty ', 'Growth', 'Sugar', 'Oil', 'Rainbow', 'Travel', 'Hamster', 'Surprise', 'Adventurer', 'Coffee', 'Amazing', 'Curiosity', 'Thread', 'Fish', 'Remarkable', 'Understanding', 'Butter', 'Early Morning', 'Student', 'Spring', 'Lake', 'Therapy', 'Skill', 'Grace', 'Unmatched', 'Purpose' , 'Kiss', 'Feline', 'Single', 'Peace', 'Technician', 'Pear', 'Dance', 'Hummingbird', 'Airplane', 'Lake', 'Intoxicating', 'Euphoric', 'Exciting', 'Festivity', 'Sun', 'Pants', 'Jump', 'Boat', 'Ceramic', 'Interdependence', 'Play', 'Eloquence', 'Stimulated', 'Essence', 'Salty' , 'Trust', 'Oats', 'Ethics', 'Initiative', 'Banana', 'Cloud', 'Lush', 'Write', 'Encounter', 'Nutrition', 'Desire', 'Noble', 'Spirituality', 'Cooperation', 'Harmony', 'Pepper', 'Improvement', 'Sublime', 'Dazzling', 'Tradition', 'Flexibility', 'Universe', 'Giraffe', 'Street', 'Diversity' , 'Act', 'Sensitive', 'Technical', 'Compassion', 'Spectacular', 'Rice', 'Bird', 'Notebook', 'Genuine', 'Silence', 'Cheese', 'T-shirt', 'Dawn', 'Abundance', 'Companionship', 'Challenging', 'Stunning', 'Impression', 'Institute', 'Sunset', 'Achievement', 'Tablet', 'Storm', 'Entrepreneurship', 'Thunder ', 'Eccentricity', 'Village', 'Feelings', 'Electrified', 'Fascinating', 'Gratitude', 'Cinnamon', 'Victory', 'Loyalty', 'Bicycle', 'Corn', 'Success', 'Emotion', 'Education', 'Waterfall', 'Freedom', 'Dentistry', 'Integrity', 'Sofa', 'Research', 'Cheese', 'Enlightenment', 'Generosity', 'Passion', 'Earth ', 'Poetry', 'Sacrifice', 'Resilience', 'Wonderfully', 'Energetic', 'Window']
 
             def Palabra_Aleatoria(lista_palabras):
+                """
+                Función para escoger una palabra aleatoriamente
+
+                Argumentos:
+                parametro1: lista de palabras.
+         
+                Returns:
+                palabra aleatoria pertenciente a la lista
+                """    
                 palabra_aleatoria = random.choice(lista_palabras)
                 return palabra_aleatoria
 
             def ocultar_palabra(palabra):
+                """
+                Función para ocultar la palabra elegida
+
+                Argumentos:
+                parametro1: operación para ocultar cada caracter de la palabra
+     
+                Returns:
+                palabra aleatoria pertenciente a la lista oculta
+                """ 
                 oculta = "_" * len(palabra)
                 return oculta
 
             def mostrar_palabra(palabra_oculta):
-                print("The word:", " ".join(palabra_oculta))
+                """
+                Función que mostrara la palabra oculta
+
+                Argumentos:
+                parametro1: palabra oculta
+         
+                Returns:
+                Muestra la palabra que estaba oculta
+                """
+                print("Word:", " ".join(palabra_oculta))
 
             def adivinar_letra():
-                return input("Guess a letter: ")
+                """
+                Función para adivinar la palabra
+
+                Argumentos:
+                parametro1: La letra ingresada por el usuario
+                """ 
+                return input("guess the letter:")
 
             def Stickman(intentos):
+                """
+                Función que forma al muñeco segun los intentos
+
+                Argumentos:
+                parametro1: Intentos
+        
+                Returns:
+                Stikman 
+        
+                """
                 if intentos == 0:
                     print("  -------")
                     print("  |     |")
@@ -1480,40 +1735,50 @@ elif a == 2:
                     print("=====")
 
             def jugar_ahorcado():
-                palabra = Palabra_Aleatoria(lista)
-                palabra_oculta = ocultar_palabra(palabra)
-                intentos_totales = 10
-                intentos_restantes = intentos_totales
+                palabra = Palabra_Aleatoria(lista)# En palabra se almacenara la palara aleatoria
+                palabra_oculta = ocultar_palabra(palabra) # En palabra_oculta se almacenara la palabra aleatoria pero oculta
+                intentos_totales = 10 # Definimos la cantidad de intentos en este modo de juego
+                intentos_restantes = intentos_totales # En intentos_restantes se almacena los intentos_totales del nivel
+                tiempo_inicial = time.time()# Tiempo inicial, se utilizará para el temporizador
 
+ 
+                while intentos_restantes > 0: #bucle que permite seguir el programa mientras hallan intentos 
+                    mostrar_palabra(palabra_oculta) # Llamamos la función mostra_palabra con el argumento de palabra_oculta
+                    Stickman(intentos_restantes) # Llamamos la función del stikman con el argumento de los intentos
+                    letra = adivinar_letra() # La variable letra almacena la función adivinar_letra
+                    acierto = False # verifica el acierto del usuario
+                    nueva_palabra_oculta = "" # Actualiza la palabra
 
-                while intentos_restantes > 0:
-                    mostrar_palabra(palabra_oculta)
-                    Stickman(intentos_restantes)
-                    letra = adivinar_letra()
-                    acierto = False
-                    nueva_palabra_oculta = ""
-
-                    for i in range(len(palabra)):
+                    for i in range(len(palabra)): # Ciclo para comprobar que la letra ingresada sea de la palabra
                         if palabra[i].lower() == letra.lower():
-                            nueva_palabra_oculta += letra
-                            acierto = True
+                           nueva_palabra_oculta += letra
+                           acierto = True
                         else:
-                            nueva_palabra_oculta += palabra_oculta[i]
+                           nueva_palabra_oculta += palabra_oculta[i]
 
-                    if acierto:
-                        palabra_oculta = nueva_palabra_oculta
-                        print("¡Correct!")
+                        if acierto:
+                            palabra_oculta = nueva_palabra_oculta
+                            tiempo_total = 60 # Establecer aquí el tiempo total en segundos
+                            tiempo_transcurrido = time.time() - tiempo_inicial
+                            tiempo_restante = tiempo_total - tiempo_transcurrido
+                        print("¡¡Correct!! I'll keep you", int(tiempo_restante), "seconds.")   
 
                     else:
                         intentos_restantes -= 1
-                        print("Incorrect. you have left ", intentos_restantes, "Attempts.")
+                        tiempo_total = 60  # Establecer aquí el tiempo total en segundos
+                        tiempo_transcurrido = time.time() - tiempo_inicial
+                        tiempo_restante = tiempo_total - tiempo_transcurrido
+                    
+                        print("Incorrect. you have left ", intentos_restantes, "Attempts", int(tiempo_restante), "seconds")  
+                
 
                     if palabra_oculta.lower() == palabra.lower():
-                        print("Won! You have guessed the word: ", palabra)
+                        print("Won! You have guessed the word:", palabra)
                         break
 
-                    if intentos_restantes == 0:
-                        print("You lost! The word was:", palabra)
+                    if tiempo_restante <= 0 or intentos_restantes== 0:
+                        print("¡You lost! The word was:", palabra)
+                        break
 
 
             print("Player 1:")
@@ -1528,20 +1793,63 @@ elif a == 2:
 
 
             def Palabra_Aleatoria(lista_palabras):
+                """
+                Función para escoger una palabra aleatoriamente
+
+                Argumentos:
+                parametro1: lista de palabras.
+         
+                Returns:
+                palabra aleatoria pertenciente a la lista
+                """    
                 palabra_aleatoria = random.choice(lista_palabras)
                 return palabra_aleatoria
 
             def ocultar_palabra(palabra):
+                """
+                Función para ocultar la palabra elegida
+
+                Argumentos:
+                parametro1: operación para ocultar cada caracter de la palabra
+     
+                Returns:
+                palabra aleatoria pertenciente a la lista oculta
+                """ 
                 oculta = "_" * len(palabra)
                 return oculta
 
             def mostrar_palabra(palabra_oculta):
-                print("The word:", " ".join(palabra_oculta))
+                """
+                Función que mostrara la palabra oculta
+
+                Argumentos:
+                parametro1: palabra oculta
+         
+                Returns:
+                Muestra la palabra que estaba oculta
+                """
+                print("Word:", " ".join(palabra_oculta))
 
             def adivinar_letra():
-                return input("Guess a letter: ")
+                """
+                Función para adivinar la palabra
+
+                Argumentos:
+                parametro1: La letra ingresada por el usuario
+                """ 
+                return input("guess the letter:")
 
             def Stickman(intentos):
+                """
+                Función que forma al muñeco segun los intentos
+
+                Argumentos:
+                parametro1: Intentos
+        
+                Returns:
+                Stikman 
+        
+                """
                 if intentos == 1:
                     print("  -------")
                     print("  |     |")
@@ -1575,38 +1883,50 @@ elif a == 2:
                     print("=====")
 
             def jugar_ahorcado():
-                palabra = Palabra_Aleatoria(lista)
-                palabra_oculta = ocultar_palabra(palabra)
-                intentos_totales = 4
-                intentos_restantes = intentos_totales
+                palabra = Palabra_Aleatoria(lista)# En palabra se almacenara la palara aleatoria
+                palabra_oculta = ocultar_palabra(palabra) # En palabra_oculta se almacenara la palabra aleatoria pero oculta
+                intentos_totales = 4 # Definimos la cantidad de intentos en este modo de juego
+                intentos_restantes = intentos_totales # En intentos_restantes se almacena los intentos_totales del nivel
+                tiempo_inicial = time.time()# Tiempo inicial, se utilizará para el temporizador
 
-                while intentos_restantes > 0:
-                    mostrar_palabra(palabra_oculta)
-                    Stickman(intentos_restantes)
-                    letra = adivinar_letra()
-                    acierto = False
-                    nueva_palabra_oculta = ""
+ 
+                while intentos_restantes > 0: #bucle que permite seguir el programa mientras hallan intentos 
+                    mostrar_palabra(palabra_oculta) # Llamamos la función mostra_palabra con el argumento de palabra_oculta
+                    Stickman(intentos_restantes) # Llamamos la función del stikman con el argumento de los intentos
+                    letra = adivinar_letra() # La variable letra almacena la función adivinar_letra
+                    acierto = False # verifica el acierto del usuario
+                    nueva_palabra_oculta = "" # Actualiza la palabra
 
-                    for i in range(len(palabra)):
+                    for i in range(len(palabra)): # Ciclo para comprobar que la letra ingresada sea de la palabra
                         if palabra[i].lower() == letra.lower():
-                            nueva_palabra_oculta += letra
-                            acierto = True
+                           nueva_palabra_oculta += letra
+                           acierto = True
                         else:
-                            nueva_palabra_oculta += palabra_oculta[i]
+                           nueva_palabra_oculta += palabra_oculta[i]
 
-                    if acierto:
-                        palabra_oculta = nueva_palabra_oculta
-                        print("¡Correct!")
+                        if acierto:
+                            palabra_oculta = nueva_palabra_oculta
+                            tiempo_total = 30 # Establecer aquí el tiempo total en segundos
+                            tiempo_transcurrido = time.time() - tiempo_inicial
+                            tiempo_restante = tiempo_total - tiempo_transcurrido
+                        print("¡¡Correct!! I'll keep you", int(tiempo_restante), "seconds.")   
+
                     else:
                         intentos_restantes -= 1
-                        print("Incorrect. you have left ", intentos_restantes, "Attempts.")
+                        tiempo_total = 30  # Establecer aquí el tiempo total en segundos
+                        tiempo_transcurrido = time.time() - tiempo_inicial
+                        tiempo_restante = tiempo_total - tiempo_transcurrido
+                    
+                        print("Incorrect. you have left ", intentos_restantes, "Attempts", int(tiempo_restante), "seconds")  
+                
 
                     if palabra_oculta.lower() == palabra.lower():
                         print("Won! You have guessed the word:", palabra)
                         break
 
-                    if intentos_restantes == 0:
-                        print("You lost! The word was:", palabra)
+                    if tiempo_restante <= 0 or intentos_restantes== 0:
+                        print("¡You lost! The word was:", palabra)
+                        break
             print("Player 1:")
             jugar_ahorcado()
 
