@@ -91,6 +91,7 @@ if a == 1:
                 intentos_totales = 1000 # Definimos la cantidad de intentos en este modo de juego
                 intentos_restantes = intentos_totales # En intentos_restantes se almacena los intentos_totales del nivel
                 tiempo_inicial= time.time() # Tiempo inicial, se utilizará para el temporizador
+                letras_ingresadas= [] # Lista para almacenar las letras ya ingresadas
                 
 
                 while intentos_restantes > 0: # Bucle que permite seguir el programa mientras hallan intentos 
@@ -100,8 +101,11 @@ if a == 1:
                     acierto = False # verifica el acierto del usuario
                     nueva_palabra_oculta = "" # Actualiza la palabra
 
-                    if tiempo_inicial is None:  # Verificar si es la primera letra ingresada
-                     tiempo_inicial = time.time()  # Asignar tiempo inicial
+                    if letra.lower() in letras_ingresadas:
+                       print("¡La letra", letra, "ya ha sido ingresada!")
+                       continue
+                    else:
+                       letras_ingresadas.append(letra.lower())
 
 
                     for i in range(len(palabra)): # Ciclo para comprobar que la letra ingresada sea de la palabra
@@ -124,7 +128,9 @@ if a == 1:
                         tiempo_transcurrido = time.time() - tiempo_inicial
                         tiempo_restante = tiempo_total - tiempo_transcurrido
                     
-                        print("Incorrecto. Te quedan", intentos_restantes, "intentos y", int(tiempo_restante), "segundos.")                   
+                        print("Incorrecto. Te quedan", intentos_restantes, "intentos y", int(tiempo_restante), "segundos.")  
+
+
 
                     if palabra_oculta.lower() == palabra.lower(): # Condicion para verficar que la palabra adivinada sea la misma que la palabra oculta
                         print("¡Ganaste! Has adivinado la palabra:", palabra)
@@ -305,6 +311,7 @@ if a == 1:
                 intentos_totales = 10 # Definimos la cantidad de intentos en este modo de juego
                 intentos_restantes = intentos_totales # En intentos_restantes se almacena los intentos_totales del nivel
                 tiempo_inicial = time.time()# Tiempo inicial, se utilizará para el temporizador
+                letras_ingresadas=[] # Lista para almacenar las letras ya ingresadas
 
 
                 while intentos_restantes > 0: #bucle que permite seguir el programa mientras hallan intentos 
@@ -313,6 +320,12 @@ if a == 1:
                     letra = adivinar_letra() # La variable letra almacena la función adivinar_letra
                     acierto = False # verifica el acierto del usuario
                     nueva_palabra_oculta = "" # Actualiza la palabra
+
+                    if letra.lower() in letras_ingresadas:
+                       print("¡La letra", letra, "ya ha sido ingresada!")
+                       continue
+                    else:    
+                       letras_ingresadas.append(letra.lower())
 
                     for i in range(len(palabra)): # Ciclo para comprobar que la letra ingresada sea de la palabra
                         if palabra[i].lower() == letra.lower():
@@ -460,6 +473,7 @@ if a == 1:
                 intentos_totales = 4 # Definimos la cantidad de intentos en este modo de juego
                 intentos_restantes = intentos_totales # En intentos_restantes se almacena los intentos_totales del nivel
                 tiempo_inicial = time.time()# Tiempo inicial, se utilizará para el temporizador
+                letras_ingresadas= []
 
 
                 while intentos_restantes > 0: #bucle que permite seguir el programa mientras hallan intentos 
@@ -468,6 +482,12 @@ if a == 1:
                     letra = adivinar_letra() # La variable letra almacena la función adivinar_letra
                     acierto = False # verifica el acierto del usuario
                     nueva_palabra_oculta = "" # Actualiza la palabra
+
+                    if letra.lower() in letras_ingresadas:
+                       print("¡La letra", letra, "ya ha sido ingresada!")
+                       continue
+                    else:
+                       letras_ingresadas.append(letra.lower())
 
                     for i in range(len(palabra)): # Ciclo para comprobar que la letra ingresada sea de la palabra
                         if palabra[i].lower() == letra.lower():
@@ -580,11 +600,18 @@ if a == 1:
                         print("=====")
 
                 def jugar_ahorcado():
+                    """
+                    Funcion principal para jugar
+        
+                    Returns:
+                    Juego ahorcado
+                    """ 
                     palabra = Palabra_Aleatoria(lista)# En palabra se almacenara la palara aleatoria
                     palabra_oculta = ocultar_palabra(palabra) # En palabra_oculta se almacenara la palabra aleatoria pero oculta
                     intentos_totales = 1000 # Definimos la cantidad de intentos en este modo de juego
                     intentos_restantes = intentos_totales # En intentos_restantes se almacena los intentos_totales del nivel
                     tiempo_inicial = time.time()# Tiempo inicial, se utilizará para el temporizador
+                    letras_ingresadas= []
 
  
                     while intentos_restantes > 0: #bucle que permite seguir el programa mientras hallan intentos 
@@ -593,6 +620,12 @@ if a == 1:
                         letra = adivinar_letra() # La variable letra almacena la función adivinar_letra
                         acierto = False # verifica el acierto del usuario
                         nueva_palabra_oculta = "" # Actualiza la palabra
+
+                        if letra.lower() in letras_ingresadas:
+                           print("¡La letra", letra, "ya ha sido ingresada!")
+                           continue
+                        else:
+                           letras_ingresadas.append(letra.lower())
 
                         for i in range(len(palabra)): # Ciclo para comprobar que la letra ingresada sea de la palabra
                             if palabra[i].lower() == letra.lower():
@@ -781,11 +814,18 @@ if a == 1:
                         print("=====")
 
                 def jugar_ahorcado():
+                    """
+                    Funcion principal para jugar
+        
+                    Returns:
+                    Juego ahorcado
+                    """ 
                     palabra = Palabra_Aleatoria(lista)# En palabra se almacenara la palara aleatoria
                     palabra_oculta = ocultar_palabra(palabra) # En palabra_oculta se almacenara la palabra aleatoria pero oculta
                     intentos_totales = 10 # Definimos la cantidad de intentos en este modo de juego
                     intentos_restantes = intentos_totales # En intentos_restantes se almacena los intentos_totales del nivel
                     tiempo_inicial = time.time()# Tiempo inicial, se utilizará para el temporizador
+                    letras_ingresadas= []
 
  
                     while intentos_restantes > 0: #bucle que permite seguir el programa mientras hallan intentos 
@@ -795,6 +835,12 @@ if a == 1:
                         acierto = False # verifica el acierto del usuario
                         nueva_palabra_oculta = "" # Actualiza la palabra
 
+                        if letra.lower() in letras_ingresadas:
+                           print("¡La letra", letra, "ya ha sido ingresada!")
+                           continue
+                        else:
+                           letras_ingresadas.append(letra.lower())                        
+  
                         for i in range(len(palabra)): # Ciclo para comprobar que la letra ingresada sea de la palabra
                             if palabra[i].lower() == letra.lower():
                                nueva_palabra_oculta += letra
@@ -928,11 +974,18 @@ if a == 1:
                         print("=====")
 
                 def jugar_ahorcado():
+                    """
+                    Funcion principal para jugar
+        
+                    Returns:
+                    Juego ahorcado
+                    """ 
                     palabra = Palabra_Aleatoria(lista)# En palabra se almacenara la palara aleatoria
                     palabra_oculta = ocultar_palabra(palabra) # En palabra_oculta se almacenara la palabra aleatoria pero oculta
                     intentos_totales = 4 # Definimos la cantidad de intentos en este modo de juego
                     intentos_restantes = intentos_totales # En intentos_restantes se almacena los intentos_totales del nivel
                     tiempo_inicial = time.time()# Tiempo inicial, se utilizará para el temporizador
+                    letras_ingresadas = []
 
  
                     while intentos_restantes > 0: #bucle que permite seguir el programa mientras hallan intentos 
@@ -941,6 +994,12 @@ if a == 1:
                         letra = adivinar_letra() # La variable letra almacena la función adivinar_letra
                         acierto = False # verifica el acierto del usuario
                         nueva_palabra_oculta = "" # Actualiza la palabra
+
+                        if letra.lower() in letras_ingresadas:
+                           print("¡La letra", letra, "ya ha sido ingresada!")
+                           continue
+                        else:
+                           letras_ingresadas.append(letra.lower())                        
 
                         for i in range(len(palabra)): # Ciclo para comprobar que la letra ingresada sea de la palabra
                             if palabra[i].lower() == letra.lower():
@@ -1056,11 +1115,18 @@ elif a == 2:
                     print("=====")
 
             def jugar_ahorcado():
+                """
+                Funcion principal para jugar
+    
+                Returns:
+                Juego ahorcado
+                """ 
                 palabra = Palabra_Aleatoria(lista)# En palabra se almacenara la palara aleatoria
                 palabra_oculta = ocultar_palabra(palabra) # En palabra_oculta se almacenara la palabra aleatoria pero oculta
                 intentos_totales = 1000 # Definimos la cantidad de intentos en este modo de juego
                 intentos_restantes = intentos_totales # En intentos_restantes se almacena los intentos_totales del nivel
                 tiempo_inicial = time.time()# Tiempo inicial, se utilizará para el temporizador
+                letras_ingresadas= []
 
  
                 while intentos_restantes > 0: #bucle que permite seguir el programa mientras hallan intentos 
@@ -1069,6 +1135,12 @@ elif a == 2:
                     letra = adivinar_letra() # La variable letra almacena la función adivinar_letra
                     acierto = False # verifica el acierto del usuario
                     nueva_palabra_oculta = "" # Actualiza la palabra
+
+                    if letra.lower() in letras_ingresadas:
+                       print("¡the letter", letra, "has already been entered!")
+                       continue
+                    else:
+                       letras_ingresadas.append(letra.lower())   
 
                     for i in range(len(palabra)): # Ciclo para comprobar que la letra ingresada sea de la palabra
                         if palabra[i].lower() == letra.lower():
@@ -1259,11 +1331,18 @@ elif a == 2:
                     print("=====")
 
             def jugar_ahorcado():
+                """
+                Funcion principal para jugar
+        
+                Returns:
+                Juego ahorcado
+                """ 
                 palabra = Palabra_Aleatoria(lista)# En palabra se almacenara la palara aleatoria
                 palabra_oculta = ocultar_palabra(palabra) # En palabra_oculta se almacenara la palabra aleatoria pero oculta
                 intentos_totales = 10 # Definimos la cantidad de intentos en este modo de juego
                 intentos_restantes = intentos_totales # En intentos_restantes se almacena los intentos_totales del nivel
                 tiempo_inicial = time.time()# Tiempo inicial, se utilizará para el temporizador
+                letras_ingresadas= []
 
  
                 while intentos_restantes > 0: #bucle que permite seguir el programa mientras hallan intentos 
@@ -1272,6 +1351,12 @@ elif a == 2:
                     letra = adivinar_letra() # La variable letra almacena la función adivinar_letra
                     acierto = False # verifica el acierto del usuario
                     nueva_palabra_oculta = "" # Actualiza la palabra
+
+                    if letra.lower() in letras_ingresadas:
+                       print("¡the letter", letra, "has already been entered!")
+                       continue
+                    else:
+                       letras_ingresadas.append(letra.lower()) 
 
                     for i in range(len(palabra)): # Ciclo para comprobar que la letra ingresada sea de la palabra
                         if palabra[i].lower() == letra.lower():
@@ -1406,11 +1491,18 @@ elif a == 2:
                     print("=====")
 
             def jugar_ahorcado():
+                """
+                Funcion principal para jugar
+        
+                Returns:
+                Juego ahorcado
+                """     
                 palabra = Palabra_Aleatoria(lista)# En palabra se almacenara la palara aleatoria
                 palabra_oculta = ocultar_palabra(palabra) # En palabra_oculta se almacenara la palabra aleatoria pero oculta
                 intentos_totales = 4 # Definimos la cantidad de intentos en este modo de juego
                 intentos_restantes = intentos_totales # En intentos_restantes se almacena los intentos_totales del nivel
                 tiempo_inicial = time.time()# Tiempo inicial, se utilizará para el temporizador
+                letras_ingresadas= []
 
  
                 while intentos_restantes > 0: #bucle que permite seguir el programa mientras hallan intentos 
@@ -1419,6 +1511,12 @@ elif a == 2:
                     letra = adivinar_letra() # La variable letra almacena la función adivinar_letra
                     acierto = False # verifica el acierto del usuario
                     nueva_palabra_oculta = "" # Actualiza la palabra
+
+                    if letra.lower() in letras_ingresadas:
+                       print("¡the letter", letra, "has already been entered!")
+                       continue
+                    else:
+                       letras_ingresadas.append(letra.lower()) 
 
                     for i in range(len(palabra)): # Ciclo para comprobar que la letra ingresada sea de la palabra
                         if palabra[i].lower() == letra.lower():
@@ -1534,12 +1632,19 @@ elif a == 2:
                     print("=====")
 
             def jugar_ahorcado():
+                """
+                Funcion principal para jugar
+        
+                Returns:
+                Juego ahorcado
+                """ 
                 palabra = Palabra_Aleatoria(lista)# En palabra se almacenara la palara aleatoria
                 palabra_oculta = ocultar_palabra(palabra) # En palabra_oculta se almacenara la palabra aleatoria pero oculta
                 intentos_totales = 1000 # Definimos la cantidad de intentos en este modo de juego
                 intentos_restantes = intentos_totales # En intentos_restantes se almacena los intentos_totales del nivel
                 tiempo_inicial = time.time()# Tiempo inicial, se utilizará para el temporizador
-
+                letras_ingresadas= []
+           
  
                 while intentos_restantes > 0: #bucle que permite seguir el programa mientras hallan intentos 
                     mostrar_palabra(palabra_oculta) # Llamamos la función mostra_palabra con el argumento de palabra_oculta
@@ -1547,6 +1652,12 @@ elif a == 2:
                     letra = adivinar_letra() # La variable letra almacena la función adivinar_letra
                     acierto = False # verifica el acierto del usuario
                     nueva_palabra_oculta = "" # Actualiza la palabra
+
+                    if letra.lower() in letras_ingresadas:
+                       print("¡the letter", letra, "has already been entered!")
+                       continue
+                    else:
+                       letras_ingresadas.append(letra.lower()) 
 
                     for i in range(len(palabra)): # Ciclo para comprobar que la letra ingresada sea de la palabra
                         if palabra[i].lower() == letra.lower():
@@ -1735,11 +1846,18 @@ elif a == 2:
                     print("=====")
 
             def jugar_ahorcado():
+                """
+                Funcion principal para jugar
+        
+                Returns:
+                Juego ahorcado
+                """ 
                 palabra = Palabra_Aleatoria(lista)# En palabra se almacenara la palara aleatoria
                 palabra_oculta = ocultar_palabra(palabra) # En palabra_oculta se almacenara la palabra aleatoria pero oculta
                 intentos_totales = 10 # Definimos la cantidad de intentos en este modo de juego
                 intentos_restantes = intentos_totales # En intentos_restantes se almacena los intentos_totales del nivel
                 tiempo_inicial = time.time()# Tiempo inicial, se utilizará para el temporizador
+                letras_ingresadas= []
 
  
                 while intentos_restantes > 0: #bucle que permite seguir el programa mientras hallan intentos 
@@ -1748,6 +1866,12 @@ elif a == 2:
                     letra = adivinar_letra() # La variable letra almacena la función adivinar_letra
                     acierto = False # verifica el acierto del usuario
                     nueva_palabra_oculta = "" # Actualiza la palabra
+
+                    if letra.lower() in letras_ingresadas:
+                       print("¡the letter", letra, "has already been entered!")
+                       continue
+                    else:
+                       letras_ingresadas.append(letra.lower()) 
 
                     for i in range(len(palabra)): # Ciclo para comprobar que la letra ingresada sea de la palabra
                         if palabra[i].lower() == letra.lower():
@@ -1883,11 +2007,18 @@ elif a == 2:
                     print("=====")
 
             def jugar_ahorcado():
+                """
+                Funcion principal para jugar
+        
+                Returns:
+                Juego ahorcado
+                """ 
                 palabra = Palabra_Aleatoria(lista)# En palabra se almacenara la palara aleatoria
                 palabra_oculta = ocultar_palabra(palabra) # En palabra_oculta se almacenara la palabra aleatoria pero oculta
                 intentos_totales = 4 # Definimos la cantidad de intentos en este modo de juego
                 intentos_restantes = intentos_totales # En intentos_restantes se almacena los intentos_totales del nivel
                 tiempo_inicial = time.time()# Tiempo inicial, se utilizará para el temporizador
+                letras_ingresadas=[]
 
  
                 while intentos_restantes > 0: #bucle que permite seguir el programa mientras hallan intentos 
@@ -1896,6 +2027,12 @@ elif a == 2:
                     letra = adivinar_letra() # La variable letra almacena la función adivinar_letra
                     acierto = False # verifica el acierto del usuario
                     nueva_palabra_oculta = "" # Actualiza la palabra
+
+                    if letra.lower() in letras_ingresadas:
+                       print("¡the letter", letra, "has already been entered!")
+                       continue
+                    else:
+                       letras_ingresadas.append(letra.lower()) 
 
                     for i in range(len(palabra)): # Ciclo para comprobar que la letra ingresada sea de la palabra
                         if palabra[i].lower() == letra.lower():
@@ -1969,6 +2106,7 @@ elif a == 3:
                 intentos_totales = 1000
                 intentos_restantes = intentos_totales
                 tiempo_inicial = time.time()
+                letras_ingresadas=[]
 
 
                 while intentos_restantes > 0:
