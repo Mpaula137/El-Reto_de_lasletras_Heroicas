@@ -2115,6 +2115,13 @@ elif a == 3:
                     letra = adivinar_letra()
                     acierto = False
                     nueva_palabra_oculta = ""
+                    
+                    if letra.lower() in letras_ingresadas:
+                       print("¡la lettera", letra, "è già stata inserita!")
+                       continue
+                    else:
+                       letras_ingresadas.append(letra.lower()) 
+                    
 
                     for i in range(len(palabra)):
                         if palabra[i].lower() == letra.lower():
@@ -2264,6 +2271,7 @@ elif a == 3:
                 intentos_totales = 10
                 intentos_restantes = intentos_totales
                 tiempo_inicial = time.time()
+                letras_ingresadas=[]
 
 
                 while intentos_restantes > 0:
@@ -2272,6 +2280,12 @@ elif a == 3:
                     letra = adivinar_letra()
                     acierto = False
                     nueva_palabra_oculta = ""
+
+                    if letra.lower() in letras_ingresadas:
+                       print("¡la lettera", letra, "è già stata inserita!")
+                       continue
+                    else:
+                       letras_ingresadas.append(letra.lower())
 
                     for i in range(len(palabra)):
                         if palabra[i].lower() == letra.lower():
@@ -2368,6 +2382,7 @@ elif a == 3:
                 intentos_totales = 4
                 intentos_restantes = intentos_totales
                 tiempo_inicial = time.time()
+                letras_ingresadas= []
 
 
                 while intentos_restantes > 0:
@@ -2376,6 +2391,12 @@ elif a == 3:
                     letra = adivinar_letra()
                     acierto = False
                     nueva_palabra_oculta = ""
+
+                    if letra.lower() in letras_ingresadas:
+                       print("¡la lettera", letra, "è già stata inserita!")
+                       continue
+                    else:
+                       letras_ingresadas.append(letra.lower())
 
                     for i in range(len(palabra)):
                         if palabra[i].lower() == letra.lower():
@@ -2448,6 +2469,7 @@ elif a == 3:
                 intentos_totales = 1000
                 intentos_restantes = intentos_totales
                 tiempo_inicial = time.time()
+                letras_ingresadas= []
 
 
                 while intentos_restantes > 0:
@@ -2456,6 +2478,12 @@ elif a == 3:
                     letra = adivinar_letra()
                     acierto = False
                     nueva_palabra_oculta = ""
+
+                    if letra.lower() in letras_ingresadas:
+                       print("¡la lettera", letra, "è già stata inserita!")
+                       continue
+                    else:
+                       letras_ingresadas.append(letra.lower())
 
                     for i in range(len(palabra)):
                         if palabra[i].lower() == letra.lower():
@@ -2603,6 +2631,7 @@ elif a == 3:
                 intentos_totales = 10
                 intentos_restantes = intentos_totales
                 tiempo_inicial = time.time()
+                letras_ingresadas= []
 
 
                 while intentos_restantes > 0:
@@ -2611,6 +2640,12 @@ elif a == 3:
                     letra = adivinar_letra()
                     acierto = False
                     nueva_palabra_oculta = ""
+
+                    if letra.lower() in letras_ingresadas:
+                       print("¡la lettera", letra, "è già stata inserita!")
+                       continue
+                    else:
+                       letras_ingresadas.append(letra.lower())
 
                     for i in range(len(palabra)):
                         if palabra[i].lower() == letra.lower():
@@ -2705,6 +2740,7 @@ elif a == 3:
                 intentos_totales = 4
                 intentos_restantes = intentos_totales
                 tiempo_inicial = time.time()
+                letras_ingresadas = []
 
 
                 while intentos_restantes > 0:
@@ -2713,6 +2749,12 @@ elif a == 3:
                     letra = adivinar_letra()
                     acierto = False
                     nueva_palabra_oculta = ""
+
+                    if letra.lower() in letras_ingresadas:
+                       print("¡la lettera", letra, "è già stata inserita!")
+                       continue
+                    else:
+                       letras_ingresadas.append(letra.lower())                    
 
                     for i in range(len(palabra)):
                         if palabra[i].lower() == letra.lower():
@@ -2786,6 +2828,7 @@ elif a == 4:
                 intentos_totales = 1000
                 intentos_restantes = intentos_totales
                 tiempo_inicial = time.time()
+                letras_ingresadas= []
 
 
                 while intentos_restantes > 0:
@@ -2794,6 +2837,12 @@ elif a == 4:
                     letra = adivinar_letra()
                     acierto = False
                     nueva_palabra_oculta = ""
+
+                    if letra.lower() in letras_ingresadas:
+                       print("¡Der Buchstabe", letra, "wurde bereits eingegeben!")
+                       continue
+                    else:
+                       letras_ingresadas.append(letra.lower())
 
                     for i in range(len(palabra)):
                         if palabra[i].lower() == letra.lower():
@@ -2944,6 +2993,7 @@ elif a == 4:
                 intentos_totales = 10
                 intentos_restantes = intentos_totales
                 tiempo_inicial = time.time()
+                letras_ingresadas=[]
 
 
                 while intentos_restantes > 0:
@@ -2952,6 +3002,12 @@ elif a == 4:
                     letra = adivinar_letra()
                     acierto = False
                     nueva_palabra_oculta = ""
+
+                    if letra.lower() in letras_ingresadas:
+                       print("¡Der Buchstabe", letra, "wurde bereits eingegeben!")
+                       continue
+                    else:
+                       letras_ingresadas.append(letra.lower())
 
                     for i in range(len(palabra)):
                         if palabra[i].lower() == letra.lower():
@@ -3050,6 +3106,7 @@ elif a == 4:
                 intentos_totales = 4
                 intentos_restantes = intentos_totales
                 tiempo_inicial = time.time()
+                letras_ingresadas= []
 
 
                 while intentos_restantes > 0:
@@ -3058,6 +3115,12 @@ elif a == 4:
                     letra = adivinar_letra()
                     acierto = False
                     nueva_palabra_oculta = ""
+                    
+                    if letra.lower() in letras_ingresadas:
+                       print("¡Der Buchstabe", letra, "wurde bereits eingegeben!")
+                       continue
+                    else:
+                       letras_ingresadas.append(letra.lower())                    
 
                     for i in range(len(palabra)):
                         if palabra[i].lower() == letra.lower():
@@ -3130,6 +3193,7 @@ elif a == 4:
                 intentos_totales = 1000
                 intentos_restantes = intentos_totales
                 tiempo_inicial = time.time()
+                letras_ingresadas= []
 
 
                 while intentos_restantes > 0:
@@ -3138,6 +3202,12 @@ elif a == 4:
                     letra = adivinar_letra()
                     acierto = False
                     nueva_palabra_oculta = ""
+
+                    if letra.lower() in letras_ingresadas:
+                       print("¡Der Buchstabe", letra, "wurde bereits eingegeben!")
+                       continue
+                    else:
+                       letras_ingresadas.append(letra.lower())                   
 
                     for i in range(len(palabra)):
                         if palabra[i].lower() == letra.lower():
@@ -3287,6 +3357,7 @@ elif a == 4:
                 intentos_totales = 10
                 intentos_restantes = intentos_totales
                 tiempo_inicial = time.time()
+                letras_ingresadas =[]
 
 
                 while intentos_restantes > 0:
@@ -3295,6 +3366,12 @@ elif a == 4:
                     letra = adivinar_letra()
                     acierto = False
                     nueva_palabra_oculta = ""
+
+                    if letra.lower() in letras_ingresadas:
+                       print("¡Der Buchstabe", letra, "wurde bereits eingegeben!")
+                       continue
+                    else:
+                       letras_ingresadas.append(letra.lower())                    
 
                     for i in range(len(palabra)):
                         if palabra[i].lower() == letra.lower():
@@ -3391,6 +3468,7 @@ elif a == 4:
                 intentos_totales = 4
                 intentos_restantes = intentos_totales
                 tiempo_inicial = time.time()
+                letras_ingresadas = []
 
 
                 while intentos_restantes > 0:
@@ -3399,6 +3477,12 @@ elif a == 4:
                     letra = adivinar_letra()
                     acierto = False
                     nueva_palabra_oculta = ""
+
+                    if letra.lower() in letras_ingresadas:
+                       print("¡Der Buchstabe", letra, "wurde bereits eingegeben!")
+                       continue
+                    else:
+                       letras_ingresadas.append(letra.lower())                   
 
                     for i in range(len(palabra)):
                         if palabra[i].lower() == letra.lower():
@@ -3472,6 +3556,7 @@ elif a == 5:
                 intentos_totales = 1000
                 intentos_restantes = intentos_totales
                 tiempo_inicial = time.time()
+                letras_ingresadas= []
 
 
                 while intentos_restantes > 0:
@@ -3480,6 +3565,12 @@ elif a == 5:
                     letra = adivinar_letra()
                     acierto = False
                     nueva_palabra_oculta = ""
+
+                    if letra.lower() in letras_ingresadas:
+                       print("¡la lettre", letra, "a déjà été saisie!")
+                       continue
+                    else:
+                       letras_ingresadas.append(letra.lower())                    
 
                     for i in range(len(palabra)):
                         if palabra[i].lower() == letra.lower():
@@ -3629,6 +3720,7 @@ elif a == 5:
                 intentos_totales = 10
                 intentos_restantes = intentos_totales
                 tiempo_inicial = time.time()
+                letras_ingresadas= []
 
 
                 while intentos_restantes > 0:
@@ -3637,6 +3729,12 @@ elif a == 5:
                     letra = adivinar_letra()
                     acierto = False
                     nueva_palabra_oculta = ""
+
+                    if letra.lower() in letras_ingresadas:
+                       print("¡la lettre", letra, "a déjà été saisie!")
+                       continue
+                    else:
+                       letras_ingresadas.append(letra.lower())    
 
                     for i in range(len(palabra)):
                         if palabra[i].lower() == letra.lower():
@@ -3734,6 +3832,7 @@ elif a == 5:
                 intentos_totales = 4
                 intentos_restantes = intentos_totales
                 tiempo_inicial = time.time()
+                letras_ingresadas= []
 
 
                 while intentos_restantes > 0:
@@ -3742,6 +3841,12 @@ elif a == 5:
                     letra = adivinar_letra()
                     acierto = False
                     nueva_palabra_oculta = ""
+
+                    if letra.lower() in letras_ingresadas:
+                       print("¡la lettre", letra, "a déjà été saisie!")
+                       continue
+                    else:
+                       letras_ingresadas.append(letra.lower())    
 
                     for i in range(len(palabra)):
                         if palabra[i].lower() == letra.lower():
@@ -3814,6 +3919,7 @@ elif a == 5:
                 intentos_totales = 1000
                 intentos_restantes = intentos_totales
                 tiempo_inicial = time.time()
+                letras_ingresadas=  []
 
 
                 while intentos_restantes > 0:
@@ -3822,6 +3928,12 @@ elif a == 5:
                     letra = adivinar_letra()
                     acierto = False
                     nueva_palabra_oculta = ""
+
+                    if letra.lower() in letras_ingresadas:
+                       print("¡la lettre", letra, "a déjà été saisie!")
+                       continue
+                    else:
+                       letras_ingresadas.append(letra.lower())    
 
                     for i in range(len(palabra)):
                         if palabra[i].lower() == letra.lower():
@@ -3970,6 +4082,7 @@ elif a == 5:
                 intentos_totales = 10
                 intentos_restantes = intentos_totales
                 tiempo_inicial = time.time()
+                letras_ingresadas = []
 
 
                 while intentos_restantes > 0:
@@ -3978,6 +4091,12 @@ elif a == 5:
                     letra = adivinar_letra()
                     acierto = False
                     nueva_palabra_oculta = ""
+
+                    if letra.lower() in letras_ingresadas:
+                       print("¡la lettre", letra, "a déjà été saisie!")
+                       continue
+                    else:
+                       letras_ingresadas.append(letra.lower())    
 
                     for i in range(len(palabra)):
                         if palabra[i].lower() == letra.lower():
@@ -4074,6 +4193,7 @@ elif a == 5:
                 intentos_totales = 4
                 intentos_restantes = intentos_totales
                 tiempo_inicial = time.time()
+                letras_ingresadas =[]
 
 
                 while intentos_restantes > 0:
@@ -4082,6 +4202,12 @@ elif a == 5:
                     letra = adivinar_letra()
                     acierto = False
                     nueva_palabra_oculta = ""
+
+                    if letra.lower() in letras_ingresadas:
+                       print("¡la lettre", letra, "a déjà été saisie!")
+                       continue
+                    else:
+                       letras_ingresadas.append(letra.lower())    
 
                     for i in range(len(palabra)):
                         if palabra[i].lower() == letra.lower():
@@ -4154,6 +4280,7 @@ elif a == 6:
                 intentos_totales = 1000
                 intentos_restantes = intentos_totales
                 tiempo_inicial= time.time()
+                letras_ingresadas= []
 
 
                 while intentos_restantes > 0:
@@ -4162,6 +4289,12 @@ elif a == 6:
                     letra = adivinar_letra()
                     acierto = False
                     nueva_palabra_oculta = ""
+
+                    if letra.lower() in letras_ingresadas:
+                       print("¡a levél", letra, "már be van írva!")
+                       continue
+                    else:
+                       letras_ingresadas.append(letra.lower())    
 
                     for i in range(len(palabra)):
                         if palabra[i].lower() == letra.lower():
@@ -4310,6 +4443,7 @@ elif a == 6:
                 intentos_totales = 10
                 intentos_restantes = intentos_totales
                 tiempo_inicial= time.time()
+                letras_ingresadas= []
 
 
                 while intentos_restantes > 0:
@@ -4318,6 +4452,12 @@ elif a == 6:
                     letra = adivinar_letra()
                     acierto = False
                     nueva_palabra_oculta = ""
+
+                    if letra.lower() in letras_ingresadas:
+                       print("¡a levél", letra, "már be van írva!")
+                       continue
+                    else:
+                       letras_ingresadas.append(letra.lower())   
 
                     for i in range(len(palabra)):
                         if palabra[i].lower() == letra.lower():
@@ -4415,6 +4555,7 @@ elif a == 6:
                 intentos_totales = 4
                 intentos_restantes = intentos_totales
                 tiempo_inicial= time.time()
+                letras_ingresadas= []
 
 
                 while intentos_restantes > 0:
@@ -4423,6 +4564,12 @@ elif a == 6:
                     letra = adivinar_letra()
                     acierto = False
                     nueva_palabra_oculta = ""
+
+                    if letra.lower() in letras_ingresadas:
+                       print("¡a levél", letra, "már be van írva!")
+                       continue
+                    else:
+                       letras_ingresadas.append(letra.lower())   
 
                     for i in range(len(palabra)):
                         if palabra[i].lower() == letra.lower():
@@ -4492,6 +4639,7 @@ elif a == 6:
                 intentos_totales = 1000
                 intentos_restantes = intentos_totales
                 tiempo_inicial= time.time()
+                letras_ingresadas =[]
 
 
                 while intentos_restantes > 0:
@@ -4500,6 +4648,12 @@ elif a == 6:
                     letra = adivinar_letra()
                     acierto = False
                     nueva_palabra_oculta = ""
+
+                    if letra.lower() in letras_ingresadas:
+                       print("¡a levél", letra, "már be van írva!")
+                       continue
+                    else:
+                       letras_ingresadas.append(letra.lower())   
 
                     for i in range(len(palabra)):
                         if palabra[i].lower() == letra.lower():
@@ -4647,6 +4801,7 @@ elif a == 6:
                 intentos_totales = 10
                 intentos_restantes = intentos_totales
                 tiempo_inicial= time.time()
+                letras_ingresadas= []
 
 
                 while intentos_restantes > 0:
@@ -4655,6 +4810,13 @@ elif a == 6:
                     letra = adivinar_letra()
                     acierto = False
                     nueva_palabra_oculta = ""
+
+                    if letra.lower() in letras_ingresadas:
+                       print("¡a levél", letra, "már be van írva!")
+                       continue
+                    else:
+                       letras_ingresadas.append(letra.lower())   
+
 
                     for i in range(len(palabra)):
                         if palabra[i].lower() == letra.lower():
@@ -4751,6 +4913,7 @@ elif a == 6:
                 intentos_totales = 4
                 intentos_restantes = intentos_totales
                 tiempo_inicial= time.time()
+                letras_ingresadas= []
 
 
                 while intentos_restantes > 0:
@@ -4759,6 +4922,12 @@ elif a == 6:
                     letra = adivinar_letra()
                     acierto = False
                     nueva_palabra_oculta = ""
+
+                    if letra.lower() in letras_ingresadas:
+                       print("¡a levél", letra, "már be van írva!")
+                       continue
+                    else:
+                       letras_ingresadas.append(letra.lower())   
 
                     for i in range(len(palabra)):
                         if palabra[i].lower() == letra.lower():
