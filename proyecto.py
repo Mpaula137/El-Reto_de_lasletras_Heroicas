@@ -1149,11 +1149,11 @@ elif a == 2:
                         else:
                            nueva_palabra_oculta += palabra_oculta[i]
 
-                        if acierto:
-                            palabra_oculta = nueva_palabra_oculta
-                            tiempo_total = 120 # Establecer aquí el tiempo total en segundos
-                            tiempo_transcurrido = time.time() - tiempo_inicial
-                            tiempo_restante = tiempo_total - tiempo_transcurrido
+                    if acierto:
+                        palabra_oculta = nueva_palabra_oculta
+                        tiempo_total = 120 # Establecer aquí el tiempo total en segundos
+                        tiempo_transcurrido = time.time() - tiempo_inicial
+                        tiempo_restante = tiempo_total - tiempo_transcurrido
                         print("¡¡Correct!! I'll keep you", int(tiempo_restante), "seconds.")   
 
                     else:
@@ -1365,11 +1365,11 @@ elif a == 2:
                         else:
                            nueva_palabra_oculta += palabra_oculta[i]
 
-                        if acierto:
-                            palabra_oculta = nueva_palabra_oculta
-                            tiempo_total = 60 # Establecer aquí el tiempo total en segundos
-                            tiempo_transcurrido = time.time() - tiempo_inicial
-                            tiempo_restante = tiempo_total - tiempo_transcurrido
+                    if acierto:
+                        palabra_oculta = nueva_palabra_oculta
+                        tiempo_total = 60 # Establecer aquí el tiempo total en segundos
+                        tiempo_transcurrido = time.time() - tiempo_inicial
+                        tiempo_restante = tiempo_total - tiempo_transcurrido
                         print("¡¡Correct!! I'll keep you", int(tiempo_restante), "seconds.")   
 
                     else:
@@ -1525,11 +1525,11 @@ elif a == 2:
                         else:
                            nueva_palabra_oculta += palabra_oculta[i]
 
-                        if acierto:
-                            palabra_oculta = nueva_palabra_oculta
-                            tiempo_total = 30 # Establecer aquí el tiempo total en segundos
-                            tiempo_transcurrido = time.time() - tiempo_inicial
-                            tiempo_restante = tiempo_total - tiempo_transcurrido
+                    if acierto:
+                        palabra_oculta = nueva_palabra_oculta
+                        tiempo_total = 30 # Establecer aquí el tiempo total en segundos
+                        tiempo_transcurrido = time.time() - tiempo_inicial
+                        tiempo_restante = tiempo_total - tiempo_transcurrido
                         print("¡¡Correct!! I'll keep you", int(tiempo_restante), "seconds.")   
 
                     else:
@@ -1666,11 +1666,11 @@ elif a == 2:
                         else:
                            nueva_palabra_oculta += palabra_oculta[i]
 
-                        if acierto:
-                            palabra_oculta = nueva_palabra_oculta
-                            tiempo_total = 120  # Establecer aquí el tiempo total en segundos
-                            tiempo_transcurrido = time.time() - tiempo_inicial
-                            tiempo_restante = tiempo_total - tiempo_transcurrido
+                    if acierto:
+                        palabra_oculta = nueva_palabra_oculta
+                        tiempo_total = 120  # Establecer aquí el tiempo total en segundos
+                        tiempo_transcurrido = time.time() - tiempo_inicial
+                        tiempo_restante = tiempo_total - tiempo_transcurrido
                         print("¡¡Correct!! I'll keep you", int(tiempo_restante), "seconds.")   
 
                     else:
@@ -1880,11 +1880,11 @@ elif a == 2:
                         else:
                            nueva_palabra_oculta += palabra_oculta[i]
 
-                        if acierto:
-                            palabra_oculta = nueva_palabra_oculta
-                            tiempo_total = 60 # Establecer aquí el tiempo total en segundos
-                            tiempo_transcurrido = time.time() - tiempo_inicial
-                            tiempo_restante = tiempo_total - tiempo_transcurrido
+                    if acierto:
+                        palabra_oculta = nueva_palabra_oculta
+                        tiempo_total = 60 # Establecer aquí el tiempo total en segundos
+                        tiempo_transcurrido = time.time() - tiempo_inicial
+                        tiempo_restante = tiempo_total - tiempo_transcurrido
                         print("¡¡Correct!! I'll keep you", int(tiempo_restante), "seconds.")   
 
                     else:
@@ -2041,11 +2041,11 @@ elif a == 2:
                         else:
                            nueva_palabra_oculta += palabra_oculta[i]
 
-                        if acierto:
-                            palabra_oculta = nueva_palabra_oculta
-                            tiempo_total = 30 # Establecer aquí el tiempo total en segundos
-                            tiempo_transcurrido = time.time() - tiempo_inicial
-                            tiempo_restante = tiempo_total - tiempo_transcurrido
+                    if acierto:
+                        palabra_oculta = nueva_palabra_oculta
+                        tiempo_total = 30 # Establecer aquí el tiempo total en segundos
+                        tiempo_transcurrido = time.time() - tiempo_inicial
+                        tiempo_restante = tiempo_total - tiempo_transcurrido
                         print("¡¡Correct!! I'll keep you", int(tiempo_restante), "seconds.")   
 
                     else:
@@ -2864,7 +2864,7 @@ elif a == 4:
                         tiempo_total = 120 # Establecer aquí el tiempo total en segundos
                         tiempo_transcurrido = time.time() - tiempo_inicial
                         tiempo_restante = tiempo_total - tiempo_transcurrido
-                        print("Falsch. Du bist gegangen", intentos_restantes, "Versuche.", tiempo_restante, "Sekunden.")
+                        print("Falsch. Du bist gegangen", intentos_restantes, "Versuche.", int(tiempo_restante), "Sekunden.")
 
                     if palabra_oculta.lower() == palabra.lower():
                         print("Gewonnen! Sie haben das Wort erraten:", palabra)
@@ -3029,7 +3029,7 @@ elif a == 4:
                         tiempo_total = 60 # Establecer aquí el tiempo total en segundos
                         tiempo_transcurrido = time.time() - tiempo_inicial
                         tiempo_restante = tiempo_total - tiempo_transcurrido
-                        print("Falsch. Du bist gegangen", intentos_restantes, "Versuche.", tiempo_restante, "Sekunden.")
+                        print("Falsch. Du bist gegangen", intentos_restantes, "Versuche.", int(tiempo_restante), "Sekunden.")
 
                     if palabra_oculta.lower() == palabra.lower():
                         print("Gewonnen! Sie haben das Wort erraten:", palabra)
@@ -3142,7 +3142,7 @@ elif a == 4:
                         tiempo_total = 30 # Establecer aquí el tiempo total en segundos
                         tiempo_transcurrido = time.time() - tiempo_inicial
                         tiempo_restante = tiempo_total - tiempo_transcurrido
-                        print("Falsch. Du bist gegangen", intentos_restantes, "Versuche.", tiempo_restante, "Sekunden.")
+                        print("Falsch. Du bist gegangen", intentos_restantes, "Versuche.", int(tiempo_restante), "Sekunden.")
 
                     if palabra_oculta.lower() == palabra.lower():
                         print("Gewonnen! Sie haben das Wort erraten:", palabra)
@@ -3229,7 +3229,7 @@ elif a == 4:
                         tiempo_total = 120 # Establecer aquí el tiempo total en segundos
                         tiempo_transcurrido = time.time() - tiempo_inicial
                         tiempo_restante = tiempo_total - tiempo_transcurrido
-                        print("Falsch. Du bist gegangen", intentos_restantes, "Versuche.", tiempo_restante, "Sekunden.")
+                        print("Falsch. Du bist gegangen", intentos_restantes, "Versuche.", int(tiempo_restante), "Sekunden.")
 
                     if palabra_oculta.lower() == palabra.lower():
                         print("Gewonnen! Sie haben das Wort erraten:", palabra)
@@ -3393,7 +3393,7 @@ elif a == 4:
                         tiempo_total = 60 # Establecer aquí el tiempo total en segundos
                         tiempo_transcurrido = time.time() - tiempo_inicial
                         tiempo_restante = tiempo_total - tiempo_transcurrido
-                        print("Falsch. Du bist gegangen", intentos_restantes, "Versuche.", tiempo_restante, "Sekunden.")
+                        print("Falsch. Du bist gegangen", intentos_restantes, "Versuche.", int(tiempo_restante), "Sekunden.")
 
                     if palabra_oculta.lower() == palabra.lower():
                         print("Gewonnen! Sie haben das Wort erraten:", palabra)
@@ -3503,7 +3503,7 @@ elif a == 4:
                         tiempo_total = 30 # Establecer aquí el tiempo total en segundos
                         tiempo_transcurrido = time.time() - tiempo_inicial
                         tiempo_restante = tiempo_total - tiempo_transcurrido
-                        print("Falsch. Du bist gegangen", intentos_restantes, "Versuche.", tiempo_restante, "Sekunden.")
+                        print("Falsch. Du bist gegangen", intentos_restantes, "Versuche.", int(tiempo_restante), "Sekunden.")
 
                     if palabra_oculta.lower() == palabra.lower():
                         print("Gewonnen! Sie haben das Wort erraten:", palabra)
@@ -3584,14 +3584,14 @@ elif a == 5:
                         tiempo_total = 120 # Establecer aquí el tiempo total en segundos
                         tiempo_transcurrido = time.time() - tiempo_inicial
                         tiempo_restante = tiempo_total - tiempo_transcurrido
-                        print("C'est Correct!, ils te donnent", tiempo_restante ,"secondes")
+                        print("C'est Correct!, ils te donnent", int(tiempo_restante) ,"secondes")
 
                     else:
                         intentos_restantes -= 1
                         tiempo_total = 120 # Establecer aquí el tiempo total en segundos
                         tiempo_transcurrido = time.time() - tiempo_inicial
                         tiempo_restante = tiempo_total - tiempo_transcurrido
-                        print("Incorrect. Ils te donnent", intentos_restantes, "tentatives.", tiempo_restante, "secondes.")
+                        print("Incorrect. Ils te donnent", intentos_restantes, "tentatives.", int(tiempo_restante), "secondes.")
 
                     if palabra_oculta.lower() == palabra.lower():
                         print("Gagné! Vous avez deviné le mot:", palabra)
@@ -3748,14 +3748,14 @@ elif a == 5:
                         tiempo_total = 60 # Establecer aquí el tiempo total en segundos
                         tiempo_transcurrido = time.time() - tiempo_inicial
                         tiempo_restante = tiempo_total - tiempo_transcurrido
-                        print("C'est Correct!, ils te donnent", tiempo_restante ,"secondes")
+                        print("C'est Correct!, ils te donnent", int(tiempo_restante) ,"secondes")
 
                     else:
                         intentos_restantes -= 1
                         tiempo_total = 60 # Establecer aquí el tiempo total en segundos
                         tiempo_transcurrido = time.time() - tiempo_inicial
                         tiempo_restante = tiempo_total - tiempo_transcurrido
-                        print("Incorrect. Ils te donnent", intentos_restantes, "tentatives.", tiempo_restante, "secondes.")
+                        print("Incorrect. Ils te donnent", intentos_restantes, "tentatives.", int(tiempo_restante), "secondes.")
 
                     if palabra_oculta.lower() == palabra.lower():
                         print("Gagné! Vous avez deviné le mot:", palabra)
@@ -3860,14 +3860,14 @@ elif a == 5:
                         tiempo_total = 30 # Establecer aquí el tiempo total en segundos
                         tiempo_transcurrido = time.time() - tiempo_inicial
                         tiempo_restante = tiempo_total - tiempo_transcurrido
-                        print("C'est Correct!, ils te donnent", tiempo_restante ,"secondes")
+                        print("C'est Correct!, ils te donnent", int(tiempo_restante) ,"secondes")
 
                     else:
                         intentos_restantes -= 1
                         tiempo_total = 30 # Establecer aquí el tiempo total en segundos
                         tiempo_transcurrido = time.time() - tiempo_inicial
                         tiempo_restante = tiempo_total - tiempo_transcurrido
-                        print("Incorrect. Ils te donnent", intentos_restantes, "tentatives.", tiempo_restante, "secondes.")
+                        print("Incorrect. Ils te donnent", intentos_restantes, "tentatives.", int(tiempo_restante), "secondes.")
 
                     if palabra_oculta.lower() == palabra.lower():
                         print("Gagné! Vous avez deviné le mot:", palabra)
@@ -3947,14 +3947,14 @@ elif a == 5:
                         tiempo_total = 120 # Establecer aquí el tiempo total en segundos
                         tiempo_transcurrido = time.time() - tiempo_inicial
                         tiempo_restante = tiempo_total - tiempo_transcurrido
-                        print("C'est Correct!, ils te donnent", tiempo_restante ,"secondes")
+                        print("C'est Correct!, ils te donnent", int(tiempo_restante) ,"secondes")
 
                     else:
                         intentos_restantes -= 1
                         tiempo_total = 120 # Establecer aquí el tiempo total en segundos
                         tiempo_transcurrido = time.time() - tiempo_inicial
                         tiempo_restante = tiempo_total - tiempo_transcurrido
-                        print("Incorrect. Ils te donnent", intentos_restantes, "tentatives.", tiempo_restante, "secondes.")
+                        print("Incorrect. Ils te donnent", intentos_restantes, "tentatives.", int(tiempo_restante), "secondes.")
 
                     if palabra_oculta.lower() == palabra.lower():
                         print("Gagné! Vous avez deviné le mot:", palabra)
@@ -4110,14 +4110,14 @@ elif a == 5:
                         tiempo_total = 60 # Establecer aquí el tiempo total en segundos
                         tiempo_transcurrido = time.time() - tiempo_inicial
                         tiempo_restante = tiempo_total - tiempo_transcurrido
-                        print("C'est Correct!, ils te donnent", tiempo_restante ,"secondes")
+                        print("C'est Correct!, ils te donnent", int(tiempo_restante),"secondes")
 
                     else:
                         intentos_restantes -= 1
                         tiempo_total = 60 # Establecer aquí el tiempo total en segundos
                         tiempo_transcurrido = time.time() - tiempo_inicial
                         tiempo_restante = tiempo_total - tiempo_transcurrido
-                        print("Incorrect. Ils te donnent", intentos_restantes, "tentatives.", tiempo_restante, "secondes.")
+                        print("Incorrect. Ils te donnent", intentos_restantes, "tentatives.", int(tiempo_restante), "secondes.")
 
                     if palabra_oculta.lower() == palabra.lower():
                         print("Gagné! Vous avez deviné le mot:", palabra)
@@ -4221,14 +4221,14 @@ elif a == 5:
                         tiempo_total = 30 # Establecer aquí el tiempo total en segundos
                         tiempo_transcurrido = time.time() - tiempo_inicial
                         tiempo_restante = tiempo_total - tiempo_transcurrido
-                        print("C'est Correct!, ils te donnent", tiempo_restante ,"secondes")
+                        print("C'est Correct!, ils te donnent", int(tiempo_restante) ,"secondes")
 
                     else:
                         intentos_restantes -= 1
                         tiempo_total = 30 # Establecer aquí el tiempo total en segundos
                         tiempo_transcurrido = time.time() - tiempo_inicial
                         tiempo_restante = tiempo_total - tiempo_transcurrido
-                        print("Incorrect. Ils te donnent", intentos_restantes, "tentatives.", tiempo_restante, "secondes.")
+                        print("Incorrect. Ils te donnent", intentos_restantes, "tentatives.", int(tiempo_restante), "secondes.")
 
                     if palabra_oculta.lower() == palabra.lower():
                         print("Gagné! Vous avez deviné le mot:", palabra)
@@ -4308,14 +4308,14 @@ elif a == 6:
                         tiempo_total = 120 # Establecer aquí el tiempo total en segundos
                         tiempo_transcurrido = time.time() - tiempo_inicial
                         tiempo_restante = tiempo_total - tiempo_transcurrido
-                        print("helyes!, elmentél", tiempo_restante, "másodpercig.")
+                        print("helyes!, elmentél", int(tiempo_restante), "másodpercig.")
 
                     else:
                         intentos_restantes -= 1
                         tiempo_total = 120 # Establecer aquí el tiempo total en segundos
                         tiempo_transcurrido = time.time() - tiempo_inicial
                         tiempo_restante = tiempo_total - tiempo_transcurrido
-                        print("Helytelen. elmentél", intentos_restantes, "kísérletek.", tiempo_restante, "másodpercig.")
+                        print("Helytelen. elmentél", intentos_restantes, "kísérletek.", int(tiempo_restante), "másodpercig.")
 
                     if palabra_oculta.lower() == palabra.lower():
                         print("Nyerte! Kitaláltad a szót:", palabra)
@@ -4471,14 +4471,14 @@ elif a == 6:
                         tiempo_total = 60 # Establecer aquí el tiempo total en segundos
                         tiempo_transcurrido = time.time() - tiempo_inicial
                         tiempo_restante = tiempo_total - tiempo_transcurrido
-                        print("helyes!, elmentél", tiempo_restante, "másodpercig.")
+                        print("helyes!, elmentél", int(tiempo_restante), "másodpercig.")
 
                     else:
                         intentos_restantes -= 1
                         tiempo_total = 60 # Establecer aquí el tiempo total en segundos
                         tiempo_transcurrido = time.time() - tiempo_inicial
                         tiempo_restante = tiempo_total - tiempo_transcurrido
-                        print("Helytelen. elmentél", intentos_restantes, "kísérletek.", tiempo_restante, "másodpercig.")
+                        print("Helytelen. elmentél", intentos_restantes, "kísérletek.", int(tiempo_restante), "másodpercig.")
 
                     if palabra_oculta.lower() == palabra.lower():
                         print("Nyerte! Kitaláltad a szót:", palabra)
@@ -4583,14 +4583,14 @@ elif a == 6:
                         tiempo_total = 30 # Establecer aquí el tiempo total en segundos
                         tiempo_transcurrido = time.time() - tiempo_inicial
                         tiempo_restante = tiempo_total - tiempo_transcurrido
-                        print("helyes!, elmentél", tiempo_restante, "másodpercig.")
+                        print("helyes!, elmentél", int(tiempo_restante), "másodpercig.")
 
                     else:
                         intentos_restantes -= 1
                         tiempo_total = 30 # Establecer aquí el tiempo total en segundos
                         tiempo_transcurrido = time.time() - tiempo_inicial
                         tiempo_restante = tiempo_total - tiempo_transcurrido
-                        print("Helytelen. elmentél", intentos_restantes, "kísérletek.", tiempo_restante, "másodpercig.")
+                        print("Helytelen. elmentél", intentos_restantes, "kísérletek.", int(tiempo_restante), "másodpercig.")
 
                     if palabra_oculta.lower() == palabra.lower():
                         print("Nyerte! Kitaláltad a szót:", palabra)
@@ -4667,14 +4667,14 @@ elif a == 6:
                         tiempo_total = 120 # Establecer aquí el tiempo total en segundos
                         tiempo_transcurrido = time.time() - tiempo_inicial
                         tiempo_restante = tiempo_total - tiempo_transcurrido
-                        print("helyes!, elmentél", tiempo_restante, "másodpercig.")
+                        print("helyes!, elmentél",int(tiempo_restante), "másodpercig.")
 
                     else:
                         intentos_restantes -= 1
                         tiempo_total = 120 # Establecer aquí el tiempo total en segundos
                         tiempo_transcurrido = time.time() - tiempo_inicial
                         tiempo_restante = tiempo_total - tiempo_transcurrido
-                        print("Helytelen. elmentél", intentos_restantes, "kísérletek.", tiempo_restante, "másodpercig.")
+                        print("Helytelen. elmentél", intentos_restantes, "kísérletek.", int(tiempo_restante), "másodpercig.")
 
                     if palabra_oculta.lower() == palabra.lower():
                         print("Nyerte! Kitaláltad a szót:", palabra)
@@ -4830,14 +4830,14 @@ elif a == 6:
                         tiempo_total = 60 # Establecer aquí el tiempo total en segundos
                         tiempo_transcurrido = time.time() - tiempo_inicial
                         tiempo_restante = tiempo_total - tiempo_transcurrido
-                        print("helyes!, elmentél", tiempo_restante, "másodpercig.")
+                        print("helyes!, elmentél", int(tiempo_restante), "másodpercig.")
 
                     else:
                         intentos_restantes -= 1
                         tiempo_total = 60 # Establecer aquí el tiempo total en segundos
                         tiempo_transcurrido = time.time() - tiempo_inicial
                         tiempo_restante = tiempo_total - tiempo_transcurrido
-                        print("Helytelen. elmentél", intentos_restantes, "kísérletek.", tiempo_restante, "másodpercig.")
+                        print("Helytelen. elmentél", intentos_restantes, "kísérletek.",int (tiempo_restante), "másodpercig.")
 
                     if palabra_oculta.lower() == palabra.lower():
                         print("Nyerte! Kitaláltad a szót:", palabra)
@@ -4941,14 +4941,14 @@ elif a == 6:
                         tiempo_total = 30 # Establecer aquí el tiempo total en segundos
                         tiempo_transcurrido = time.time() - tiempo_inicial
                         tiempo_restante = tiempo_total - tiempo_transcurrido
-                        print("helyes!, elmentél", tiempo_restante, "másodpercig.")
+                        print("helyes!, elmentél", int(tiempo_restante), "másodpercig.")
 
                     else:
                         intentos_restantes -= 1
                         tiempo_total = 30 # Establecer aquí el tiempo total en segundos
                         tiempo_transcurrido = time.time() - tiempo_inicial
                         tiempo_restante = tiempo_total - tiempo_transcurrido
-                        print("Helytelen. elmentél", intentos_restantes, "kísérletek.", tiempo_restante, "másodpercig.")
+                        print("Helytelen. elmentél", intentos_restantes, "kísérletek.", int(tiempo_restante), "másodpercig.")
 
                     if palabra_oculta.lower() == palabra.lower():
                         print("Nyerte! Kitaláltad a szót:", palabra)
